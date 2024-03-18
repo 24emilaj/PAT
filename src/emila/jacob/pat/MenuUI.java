@@ -9,12 +9,12 @@ package emila.jacob.pat;
  *
  * @author 24emilaj
  */
-public class LandingPageUI extends javax.swing.JFrame {
+public class MenuUI extends javax.swing.JFrame {
 
     /**
      * Creates new form LandingPage
      */
-    public LandingPageUI() {
+    public MenuUI() {
         initComponents();
     }
 
@@ -39,7 +39,7 @@ public class LandingPageUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Landing Page");
+        jLabel1.setText("Menu");
 
         jButton1.setText("Master Table");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -142,21 +142,23 @@ public class LandingPageUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LandingPageUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LandingPageUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LandingPageUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LandingPageUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LandingPageUI().setVisible(true);
+                new MenuUI().setVisible(true);
             }
         });
     }

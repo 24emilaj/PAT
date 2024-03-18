@@ -5,6 +5,8 @@
  */
 package emila.jacob.pat;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author 24emilaj
@@ -15,7 +17,16 @@ public class EmilaJacobPAT {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+       DataHandler dh = new DataHandler();
+       ArrayList<Client> clients = dh.getAllClients();
+        for (int i = 0; i < clients.size(); i++) {
+            System.out.println(clients.get(i));   
+        }
+        System.out.println("\n");
+        ArrayList<Price> prices = dh.getAllPrices();
+        for (int i = 0; i < prices.size(); i++) {
+            System.out.println(i);     
+        }
     }
     
 }
