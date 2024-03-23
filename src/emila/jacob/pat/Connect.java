@@ -55,7 +55,7 @@ public class Connect {
             }
 
         } catch (SQLIntegrityConstraintViolationException e) {
-            JOptionPane.showMessageDialog(null, "USERNAME ALREADY IN USE");
+            JOptionPane.showMessageDialog(null, "Constraint Violation");
         } catch (SQLException e) {
             System.err.println("[DB] - update/delete/insert error - " + e);
             System.out.println("SQL CODE THAT FAILED: " + sql);

@@ -28,7 +28,13 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="btnBack" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnInsert" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
+                      <Component id="btnDelete" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnUpdate" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnHelp" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
@@ -41,7 +47,7 @@
                               <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="18" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="24" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -64,6 +70,9 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnBack" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnHelp" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnInsert" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnDelete" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnUpdate" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -115,6 +124,21 @@
     <Component class="javax.swing.JButton" name="btnHelp">
       <Properties>
         <Property name="text" type="java.lang.String" value="Help"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnInsert">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Insert"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnDelete">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Delete"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnUpdate">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Update"/>
       </Properties>
     </Component>
   </SubComponents>

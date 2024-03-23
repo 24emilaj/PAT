@@ -34,6 +34,9 @@ public class StockProducedUI extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         btnBack = new javax.swing.JButton();
         btnHelp = new javax.swing.JButton();
+        btnInsert = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,6 +63,12 @@ public class StockProducedUI extends javax.swing.JFrame {
 
         btnHelp.setText("Help");
 
+        btnInsert.setText("Insert");
+
+        btnDelete.setText("Delete");
+
+        btnUpdate.setText("Update");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -69,7 +78,13 @@ public class StockProducedUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnBack)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnInsert)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnDelete)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnUpdate)
+                        .addGap(18, 18, 18)
                         .addComponent(btnHelp))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -79,7 +94,7 @@ public class StockProducedUI extends javax.swing.JFrame {
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 18, Short.MAX_VALUE)))
+                        .addGap(0, 24, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -96,7 +111,10 @@ public class StockProducedUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBack)
-                    .addComponent(btnHelp))
+                    .addComponent(btnHelp)
+                    .addComponent(btnInsert)
+                    .addComponent(btnDelete)
+                    .addComponent(btnUpdate))
                 .addContainerGap())
         );
 
@@ -140,7 +158,10 @@ public class StockProducedUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnHelp;
+    private javax.swing.JButton btnInsert;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

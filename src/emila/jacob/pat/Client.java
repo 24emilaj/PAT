@@ -10,15 +10,52 @@ package emila.jacob.pat;
  * @author 24emilaj
  */
 public class Client {
-private int clientID;
-private String clientname,contactname,contactNum, deliveryAddress;
 
-    public Client(int clientID, String clientname, String contactname, String contactNum, String deliveryAddress) {
+    /**
+     * initializes int clientID initializes String
+     * clientname,contactname,contactNum, deliveryAddress, area, email
+     */
+    private int clientID;
+    private String clientname, contactname, contactNum, deliveryAddress, area, email;
+
+    /**
+     * Constructor method for the client class
+     *
+     * @param clientID - the id the database gives the client
+     * @param clientname - name of client
+     * @param contactname - name to contact client by
+     * @param contactNum - number used to contact client
+     * @param deliveryAddress - where the client wants the eggs delivered
+     */
+
+    public Client(int clientID, String clientname, String contactname, String contactNum, String deliveryAddress, String area, String email) {
         this.clientID = clientID;
         this.clientname = clientname;
         this.contactname = contactname;
         this.contactNum = contactNum;
         this.deliveryAddress = deliveryAddress;
+        this.area = area;
+        this.email = email;
+    }
+
+
+    /**
+     * Constructor method for the client class 
+     * Will only be used for inserting new clients
+     *
+     * @param clientname - name of client
+     * @param contactname - name to contact client by
+     * @param contactNum - number used to contact client
+     * @param deliveryAddress - where the client wants the eggs delivered
+     */
+
+    public Client(String clientname, String contactname, String contactNum, String deliveryAddress, String area, String email) {
+        this.clientname = clientname;
+        this.contactname = contactname;
+        this.contactNum = contactNum;
+        this.deliveryAddress = deliveryAddress;
+        this.area = area;
+        this.email = email;
     }
 
     public int getClientID() {
@@ -61,10 +98,25 @@ private String clientname,contactname,contactNum, deliveryAddress;
         this.deliveryAddress = deliveryAddress;
     }
 
-    @Override
-    public String toString() {
-        return clientID + ", " + clientname + ", " + contactname + ", " + contactNum + ", " + deliveryAddress;
+    public String getArea() {
+        return area;
     }
 
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return clientID + ", " + clientname + ", " + contactname + ", " + contactNum + ", " + deliveryAddress + ", " + area + ", " + email;
+    }
 
 }
