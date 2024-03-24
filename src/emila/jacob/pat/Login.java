@@ -131,6 +131,7 @@ public class Login extends javax.swing.JFrame {
 
 //        }
 m.setVisible(true);
+setVisible(false);
     }//GEN-LAST:event_btnloginActionPerformed
 
     private void passwordenterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordenterActionPerformed

@@ -49,8 +49,18 @@ public class MenuUI extends javax.swing.JFrame {
         });
 
         btnCaptureOrder.setText("Capture Order");
+        btnCaptureOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCaptureOrderActionPerformed(evt);
+            }
+        });
 
         btnSalesAnalysis.setText("Sales Analysis");
+        btnSalesAnalysis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalesAnalysisActionPerformed(evt);
+            }
+        });
 
         btnStockProduced.setText("Stock Produced");
         btnStockProduced.addActionListener(new java.awt.event.ActionListener() {
@@ -60,10 +70,25 @@ public class MenuUI extends javax.swing.JFrame {
         });
 
         btnStockProjections.setText("Stock Projections");
+        btnStockProjections.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStockProjectionsActionPerformed(evt);
+            }
+        });
 
         btnCapturePrice.setText("Capture Price");
+        btnCapturePrice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCapturePriceActionPerformed(evt);
+            }
+        });
 
         btnLogOut.setText("Log Out");
+        btnLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogOutActionPerformed(evt);
+            }
+        });
 
         btnHelp.setText("Help");
 
@@ -129,11 +154,42 @@ public class MenuUI extends javax.swing.JFrame {
     private void btnMasterTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasterTableActionPerformed
         MasterTable mt = new MasterTable();
         mt.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_btnMasterTableActionPerformed
 
     private void btnStockProducedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStockProducedActionPerformed
-        // TODO add your handling code here:
+        StockProducedUI sp = new StockProducedUI();
+        sp.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_btnStockProducedActionPerformed
+
+    private void btnCaptureOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaptureOrderActionPerformed
+        CaptureOrderUI co = new CaptureOrderUI();
+        co.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_btnCaptureOrderActionPerformed
+
+    private void btnStockProjectionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStockProjectionsActionPerformed
+        StockProjectionsUI sp = new StockProjectionsUI();
+        sp.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_btnStockProjectionsActionPerformed
+
+    private void btnSalesAnalysisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalesAnalysisActionPerformed
+        SalesAnalysisUI sa = new SalesAnalysisUI();
+        sa.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_btnSalesAnalysisActionPerformed
+
+    private void btnCapturePriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapturePriceActionPerformed
+        CapturePriceUI cp = new CapturePriceUI();
+        cp.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_btnCapturePriceActionPerformed
+
+    private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnLogOutActionPerformed
 
     /**
      * @param args the command line arguments

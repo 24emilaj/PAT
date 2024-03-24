@@ -42,8 +42,8 @@ public class StockProjectionsUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Stock Projections");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel2.setText("Average eggs produced per day");
 
@@ -61,6 +61,11 @@ public class StockProjectionsUI extends javax.swing.JFrame {
         txtEggsPurchase.setText("jTextField2");
 
         btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         btnHelp.setText("Help");
 
@@ -130,6 +135,12 @@ public class StockProjectionsUI extends javax.swing.JFrame {
     private void txteggsPerDayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txteggsPerDayActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txteggsPerDayActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        MenuUI m = new MenuUI();
+        m.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_btnBackActionPerformed
 
     /**
      * @param args the command line arguments

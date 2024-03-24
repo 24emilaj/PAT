@@ -110,11 +110,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Capture Order"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCaptureOrderActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnSalesAnalysis">
       <Properties>
         <Property name="text" type="java.lang.String" value="Sales Analysis"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalesAnalysisActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnStockProduced">
       <Properties>
@@ -128,11 +134,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Stock Projections"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnStockProjectionsActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnCapturePrice">
       <Properties>
         <Property name="text" type="java.lang.String" value="Capture Price"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCapturePriceActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnLogOut">
       <Properties>
