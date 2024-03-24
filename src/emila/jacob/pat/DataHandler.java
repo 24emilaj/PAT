@@ -532,8 +532,8 @@ public class DataHandler {
         // fix updates!!!!
         int numRows = 0;
         try {
-            //UPDATE tblTrayTypes SET traytypeID = 3, type = "30's" WHERE trayTypeID = 4
-            String sql = "UPDATE tblEggs SET traytypeID = " + t.getTrayTypeID() + ", type = \"" + t.getType() 
+            //UPDATE chickenfarmdb.tblTrayTypes SET traytypeID = 5, type = "1" WHERE trayTypeID = 9
+            String sql = "UPDATE tblTrayTypes SET traytypeID = " + t.getTrayTypeID() + ", type = \"" + t.getType() 
                     + "\" WHERE traytypeID = " + t.getTrayTypeID() + ";";
             Connect con = new Connect();
             con.makeChange(sql);

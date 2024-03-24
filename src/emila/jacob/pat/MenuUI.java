@@ -27,40 +27,45 @@ public class MenuUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        lblMenu = new javax.swing.JLabel();
+        btnMasterTable = new javax.swing.JButton();
+        btnCaptureOrder = new javax.swing.JButton();
+        btnSalesAnalysis = new javax.swing.JButton();
+        btnStockProduced = new javax.swing.JButton();
+        btnStockProjections = new javax.swing.JButton();
+        btnCapturePrice = new javax.swing.JButton();
+        btnLogOut = new javax.swing.JButton();
+        btnHelp = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Menu");
+        lblMenu.setText("Menu");
 
-        jButton1.setText("Master Table");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnMasterTable.setText("Master Table");
+        btnMasterTable.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnMasterTableActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Capture Order");
+        btnCaptureOrder.setText("Capture Order");
 
-        jButton3.setText("Sales Analysis");
+        btnSalesAnalysis.setText("Sales Analysis");
 
-        jButton4.setText("Stock Produced");
+        btnStockProduced.setText("Stock Produced");
+        btnStockProduced.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStockProducedActionPerformed(evt);
+            }
+        });
 
-        jButton5.setText("Stock Projections");
+        btnStockProjections.setText("Stock Projections");
 
-        jButton6.setText("Capture Price");
+        btnCapturePrice.setText("Capture Price");
 
-        jButton7.setText("Log Out");
+        btnLogOut.setText("Log Out");
 
-        jButton8.setText("Help");
+        btnHelp.setText("Help");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -70,60 +75,65 @@ public class MenuUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton3)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2))))
+                            .addComponent(btnSalesAnalysis)
+                            .addComponent(btnMasterTable)
+                            .addComponent(btnCaptureOrder))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6))
+                    .addComponent(btnStockProduced)
+                    .addComponent(btnStockProjections)
+                    .addComponent(btnCapturePrice))
                 .addGap(69, 69, 69))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton7)
+                .addComponent(btnLogOut)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton8)
+                .addComponent(btnHelp)
                 .addGap(27, 27, 27))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(jLabel1)
+                .addComponent(lblMenu)
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton1))
+                    .addComponent(btnStockProduced)
+                    .addComponent(btnMasterTable))
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
-                    .addComponent(jButton2))
+                    .addComponent(btnStockProjections)
+                    .addComponent(btnCaptureOrder))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton6)
-                            .addComponent(jButton3))
+                            .addComponent(btnCapturePrice)
+                            .addComponent(btnSalesAnalysis))
                         .addContainerGap(79, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton7)
-                            .addComponent(jButton8))
+                            .addComponent(btnLogOut)
+                            .addComponent(btnHelp))
                         .addContainerGap())))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnMasterTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasterTableActionPerformed
+        MasterTable mt = new MasterTable();
+        mt.setVisible(true);
+    }//GEN-LAST:event_btnMasterTableActionPerformed
+
+    private void btnStockProducedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStockProducedActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnStockProducedActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,14 +174,14 @@ public class MenuUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnCaptureOrder;
+    private javax.swing.JButton btnCapturePrice;
+    private javax.swing.JButton btnHelp;
+    private javax.swing.JButton btnLogOut;
+    private javax.swing.JButton btnMasterTable;
+    private javax.swing.JButton btnSalesAnalysis;
+    private javax.swing.JButton btnStockProduced;
+    private javax.swing.JButton btnStockProjections;
+    private javax.swing.JLabel lblMenu;
     // End of variables declaration//GEN-END:variables
 }

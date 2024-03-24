@@ -63,17 +63,20 @@ public class EmilaJacobPAT {
 //        for (int i = 0; i < orders.size(); i++) {
 //            System.out.println(orders.get(i));   
 //        }
-        TrayTypes t = new TrayTypes(6,"7's");
-        
-        
-        //dh.insertTrayTypes(t);
-        //dh.updateTrayTypes(t);
-        dh.deleteTrayTypes(t);
-        ArrayList<TrayTypes> trayTypes = dh.getAlltrayTypes();
-        for (int i = 0; i < trayTypes.size(); i++) {
-            System.out.println(trayTypes.get(i));    
-        }
-
+//        TrayTypes t = new TrayTypes(5,"7's");
+//        
+//        
+//        //dh.insertTrayTypes(t);
+//        //dh.updateTrayTypes(t);
+//        //dh.deleteTrayTypes(t);
+//        ArrayList<TrayTypes> trayTypes = dh.getAlltrayTypes();
+//        for (int i = 0; i < trayTypes.size(); i++) {
+//            System.out.println(trayTypes.get(i));    
+//        }
+Login l = new Login();
+l.setVisible(true);
+//MenuUI m = new MenuUI();
+//m.setVisible(true);
     }
 
 }
