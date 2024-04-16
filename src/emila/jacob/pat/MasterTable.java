@@ -6,6 +6,7 @@
 package emila.jacob.pat;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -27,16 +28,16 @@ public class MasterTable extends javax.swing.JFrame {
 
     public ArrayList clients() {
         ArrayList<Client> list = new ArrayList<Client>();
-        Client c1 = new Client("q", "w", "e", "r", "t", "y");
-        Client c2 = new Client("q", "w", "e", "r", "t", "y");
-        Client c3 = new Client("q", "w", "e", "r", "t", "y");
-        Client c4 = new Client("q", "w", "e", "r", "t", "y");
-        Client c5 = new Client("q", "w", "e", "r", "t", "y");
-        list.add(c5);
-        list.add(c4);
-        list.add(c3);
-        list.add(c2);
-        list.add(c1);
+//        Client c1 = new Client("q", "w", "e", "r", "t", "y");
+//        Client c2 = new Client("q", "w", "e", "r", "t", "y");
+//        Client c3 = new Client("q", "w", "e", "r", "t", "y");
+//        Client c4 = new Client("q", "w", "e", "r", "t", "y");
+//        Client c5 = new Client("q", "w", "e", "r", "t", "y");
+//        list.add(c5);
+//        list.add(c4);
+//        list.add(c3);
+//        list.add(c2);
+//        list.add(c1);
         return list;
     }
 
@@ -62,6 +63,7 @@ public class MasterTable extends javax.swing.JFrame {
     private void initComponents() {
 
         datePicker1 = new com.github.lgooddatepicker.components.DatePicker();
+        txtQuantity = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMaster = new javax.swing.JTable();
@@ -72,7 +74,6 @@ public class MasterTable extends javax.swing.JFrame {
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnViewInvoices = new javax.swing.JButton();
-        lblID = new javax.swing.JLabel();
         btnClient = new javax.swing.JButton();
         btnDate = new javax.swing.JButton();
         btnUnitType = new javax.swing.JButton();
@@ -83,22 +84,38 @@ public class MasterTable extends javax.swing.JFrame {
         txtID = new javax.swing.JTextField();
         txtClient = new javax.swing.JTextField();
         txtUnitType = new javax.swing.JTextField();
-        txtQuantity = new javax.swing.JTextField();
         txtUnitPrice = new javax.swing.JTextField();
         txtActualPrice = new javax.swing.JTextField();
         txtPrice = new javax.swing.JTextField();
         datePicker2 = new com.github.lgooddatepicker.components.DatePicker();
+        btnInsert = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        btnUnitType1 = new javax.swing.JButton();
+        txtUnitType1 = new javax.swing.JTextField();
+        btnQuantity1 = new javax.swing.JButton();
+        txtUnitPrice1 = new javax.swing.JTextField();
+        btnUnitPrice1 = new javax.swing.JButton();
+        txtActualPrice1 = new javax.swing.JTextField();
+        btnUnitType2 = new javax.swing.JButton();
+        txtUnitType2 = new javax.swing.JTextField();
+        btnQuantity2 = new javax.swing.JButton();
+        txtUnitPrice2 = new javax.swing.JTextField();
+        btnUnitPrice2 = new javax.swing.JButton();
+        txtActualPrice2 = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
+
+        txtQuantity.setText("jTextField5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Master Table");
+        jLabel1.setText("Sale Records");
 
         tblMaster.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Client", "Date", "unitType", "Quantity", "unitPrice", "Actual Pricel", "Price", "Title 9"
+                "Client", "Date", "unitType", "Quantity", "unitPrice", "Actual Pricel", "Price", "Paid"
             }
         ));
         jScrollPane1.setViewportView(tblMaster);
@@ -111,6 +128,11 @@ public class MasterTable extends javax.swing.JFrame {
         });
 
         btnHelp.setText("Help");
+        btnHelp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHelpActionPerformed(evt);
+            }
+        });
 
         btnOriginal.setText("Original");
 
@@ -127,35 +149,86 @@ public class MasterTable extends javax.swing.JFrame {
             }
         });
 
-        lblID.setText("ID");
-
         btnClient.setText("Client");
 
         btnDate.setText("Date");
 
         btnUnitType.setText("unitType");
+        btnUnitType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUnitTypeActionPerformed(evt);
+            }
+        });
 
         btnQuantity.setText("Quantity");
 
         btnUnitPrice.setText("Unit Price");
 
-        btnActualPrice.setText("Actual Price");
+        btnActualPrice.setText("Price including discount");
+        btnActualPrice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualPriceActionPerformed(evt);
+            }
+        });
 
-        btnPrice.setText("Price");
+        btnPrice.setText("Total Price");
 
         txtID.setText("jTextField1");
 
         txtClient.setText("jTextField2");
+        txtClient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtClientActionPerformed(evt);
+            }
+        });
 
         txtUnitType.setText("jTextField4");
-
-        txtQuantity.setText("jTextField5");
 
         txtUnitPrice.setText("jTextField6");
 
         txtActualPrice.setText("jTextField7");
 
         txtPrice.setText("jTextField8");
+
+        btnInsert.setText("Insert New Order");
+
+        jTextField1.setText("jTextField1");
+
+        btnUnitType1.setText("unitType");
+        btnUnitType1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUnitType1ActionPerformed(evt);
+            }
+        });
+
+        txtUnitType1.setText("jTextField4");
+
+        btnQuantity1.setText("Quantity");
+
+        txtUnitPrice1.setText("jTextField6");
+
+        btnUnitPrice1.setText("Unit Price");
+
+        txtActualPrice1.setText("jTextField7");
+
+        btnUnitType2.setText("unitType");
+        btnUnitType2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUnitType2ActionPerformed(evt);
+            }
+        });
+
+        txtUnitType2.setText("jTextField4");
+
+        btnQuantity2.setText("Quantity");
+
+        txtUnitPrice2.setText("jTextField6");
+
+        btnUnitPrice2.setText("Unit Price");
+
+        txtActualPrice2.setText("jTextField7");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -164,139 +237,170 @@ public class MasterTable extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnBack)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnHelp)
+                        .addGap(15, 15, 15))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnOriginal)
-                                .addGap(30, 30, 30)
-                                .addComponent(btnLoyalty)
-                                .addGap(31, 31, 31)
-                                .addComponent(btnUpdate)
-                                .addGap(36, 36, 36)
-                                .addComponent(btnDelete))
-                            .addComponent(jLabel1))
-                        .addGap(29, 29, 29)
-                        .addComponent(btnViewInvoices)
-                        .addContainerGap(283, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1)
-                                .addGap(51, 51, 51)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(lblID)
-                                                .addGap(64, 64, 64)
-                                                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(39, 39, 39))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(txtUnitType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(btnPrice)
-                                                        .addGap(79, 79, 79)
-                                                        .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                            .addComponent(btnActualPrice)
-                                                            .addGap(37, 37, 37)
-                                                            .addComponent(txtActualPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                        .addGroup(layout.createSequentialGroup()
-                                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                .addComponent(btnQuantity)
-                                                                .addComponent(btnUnitPrice)
-                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                    .addComponent(btnClient)
-                                                                    .addComponent(btnUnitType)))
-                                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                .addGroup(layout.createSequentialGroup()
-                                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                    .addComponent(txtUnitPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                .addGroup(layout.createSequentialGroup()
-                                                                    .addGap(49, 49, 49)
-                                                                    .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
-                                        .addGap(32, 32, 32))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(jLabel1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnInsert))
+                                    .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addComponent(txtClient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(39, 39, 39))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addComponent(btnDate)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(btnUnitType2)
                                                 .addGap(18, 18, 18)
-                                                .addComponent(datePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                                .addComponent(txtUnitType2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(btnUnitType1)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(txtUnitType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(26, 26, 26)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(btnQuantity)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                        .addComponent(txtUnitPrice1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(btnUnitPrice)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                        .addComponent(txtActualPrice1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(btnQuantity2)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                        .addComponent(txtUnitPrice2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(btnUnitPrice2)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                        .addComponent(txtActualPrice2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(btnActualPrice)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(35, 35, 35)
+                                                .addComponent(btnPrice)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnBack)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(btnClient)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(38, 38, 38)
+                                            .addComponent(btnDate)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(datePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(2, 2, 2))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(3, 3, 3)
+                                            .addComponent(btnUnitType)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(txtUnitType1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(btnQuantity1)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(txtUnitPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(btnUnitPrice1)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(txtActualPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnHelp)))
-                        .addGap(15, 15, 15))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnUpdate, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnOriginal, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnLoyalty, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(33, 33, 33)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btnViewInvoices)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(btnDelete)
+                                    .addGap(12, 12, 12)))
+                            .addComponent(txtClient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(50, 50, 50))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 26, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 871, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnOriginal)
-                    .addComponent(btnLoyalty)
-                    .addComponent(btnUpdate)
-                    .addComponent(btnDelete)
-                    .addComponent(btnViewInvoices))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnBack)
-                            .addComponent(btnHelp)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblID)
-                                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtClient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(datePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtUnitType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(9, 9, 9)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(btnUnitPrice)
-                                            .addComponent(txtUnitPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(btnActualPrice)
-                                            .addComponent(txtActualPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGap(52, 52, 52)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(btnPrice)))))
+                                .addContainerGap()
+                                .addComponent(jLabel1))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(56, 56, 56)
-                                .addComponent(btnClient)
+                                .addGap(17, 17, 17)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(btnViewInvoices)
+                                    .addComponent(btnInsert)
+                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnDate)
-                                .addGap(4, 4, 4)
-                                .addComponent(btnUnitType)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnQuantity)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(btnClient)
+                                    .addComponent(btnDate)
+                                    .addComponent(datePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnDelete)
+                                    .addComponent(btnUpdate))))
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnUnitType)
+                            .addComponent(txtUnitType1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnQuantity1)
+                            .addComponent(txtUnitPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnUnitPrice1)
+                            .addComponent(txtActualPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnOriginal, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnUnitType1)
+                    .addComponent(txtUnitType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnQuantity)
+                    .addComponent(txtUnitPrice1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUnitPrice)
+                    .addComponent(txtActualPrice1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnUnitType2)
+                    .addComponent(txtUnitType2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnQuantity2)
+                    .addComponent(txtUnitPrice2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUnitPrice2)
+                    .addComponent(txtActualPrice2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLoyalty)
+                    .addComponent(txtClient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnActualPrice)
+                    .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPrice)
+                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBack)
+                    .addComponent(btnHelp)))
         );
 
         pack();
@@ -313,6 +417,31 @@ public class MasterTable extends javax.swing.JFrame {
         m.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
+        JOptionPane.showMessageDialog(null, "1. Click on row to select the entry you would like to make a change to \n "
+                + "2. To insert/update/delete  click the insert/update/delete buttons");
+    }//GEN-LAST:event_btnHelpActionPerformed
+
+    private void btnUnitTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnitTypeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnUnitTypeActionPerformed
+
+    private void txtClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClientActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtClientActionPerformed
+
+    private void btnActualPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualPriceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnActualPriceActionPerformed
+
+    private void btnUnitType1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnitType1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnUnitType1ActionPerformed
+
+    private void btnUnitType2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnitType2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnUnitType2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -356,26 +485,40 @@ public class MasterTable extends javax.swing.JFrame {
     private javax.swing.JButton btnDate;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnHelp;
+    private javax.swing.JButton btnInsert;
     private javax.swing.JButton btnLoyalty;
     private javax.swing.JButton btnOriginal;
     private javax.swing.JLabel btnPrice;
     private javax.swing.JButton btnQuantity;
+    private javax.swing.JButton btnQuantity1;
+    private javax.swing.JButton btnQuantity2;
     private javax.swing.JButton btnUnitPrice;
+    private javax.swing.JButton btnUnitPrice1;
+    private javax.swing.JButton btnUnitPrice2;
     private javax.swing.JButton btnUnitType;
+    private javax.swing.JButton btnUnitType1;
+    private javax.swing.JButton btnUnitType2;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnViewInvoices;
     private com.github.lgooddatepicker.components.DatePicker datePicker1;
     private com.github.lgooddatepicker.components.DatePicker datePicker2;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblID;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tblMaster;
     private javax.swing.JTextField txtActualPrice;
+    private javax.swing.JTextField txtActualPrice1;
+    private javax.swing.JTextField txtActualPrice2;
     private javax.swing.JTextField txtClient;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtPrice;
     private javax.swing.JTextField txtQuantity;
     private javax.swing.JTextField txtUnitPrice;
+    private javax.swing.JTextField txtUnitPrice1;
+    private javax.swing.JTextField txtUnitPrice2;
     private javax.swing.JTextField txtUnitType;
+    private javax.swing.JTextField txtUnitType1;
+    private javax.swing.JTextField txtUnitType2;
     // End of variables declaration//GEN-END:variables
 }

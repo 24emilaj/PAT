@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Component class="com.github.lgooddatepicker.components.DatePicker" name="datePicker1">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtQuantity">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jTextField5"/>
+      </Properties>
     </Component>
   </NonVisualComponents>
   <Properties>
@@ -30,102 +35,125 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="btnOriginal" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="btnLoyalty" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                              <Component id="btnUpdate" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                              <Component id="btnDelete" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                      <Component id="btnViewInvoices" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="283" max="32767" attributes="0"/>
-                  </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="jScrollPane1" max="32767" attributes="0"/>
-                              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                      <Component id="btnBack" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="btnHelp" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <EmptySpace max="32767" attributes="0"/>
-                                              <Component id="lblID" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
-                                              <Component id="txtID" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="btnInsert" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="btnUnitType2" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="txtUnitType2" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <Group type="102" attributes="0">
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                              <Group type="103" groupAlignment="1" attributes="0">
-                                                  <Component id="txtUnitType" min="-2" max="-2" attributes="0"/>
-                                                  <Group type="102" alignment="1" attributes="0">
-                                                      <Component id="btnPrice" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
-                                                      <Component id="txtPrice" min="-2" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="btnUnitType1" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="txtUnitType" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="btnQuantity" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                      <Component id="txtUnitPrice1" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="btnUnitPrice" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                      <Component id="txtActualPrice1" min="-2" max="-2" attributes="0"/>
                                                   </Group>
-                                                  <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                                                      <Group type="102" alignment="1" attributes="0">
-                                                          <Component id="btnActualPrice" min="-2" max="-2" attributes="0"/>
-                                                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                                                          <Component id="txtActualPrice" min="-2" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <Group type="102" alignment="0" attributes="0">
-                                                          <Group type="103" groupAlignment="1" attributes="0">
-                                                              <Component id="btnQuantity" min="-2" max="-2" attributes="0"/>
-                                                              <Component id="btnUnitPrice" min="-2" max="-2" attributes="0"/>
-                                                              <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                                                  <Component id="btnClient" min="-2" max="-2" attributes="0"/>
-                                                                  <Component id="btnUnitType" min="-2" max="-2" attributes="0"/>
-                                                              </Group>
-                                                          </Group>
-                                                          <Group type="103" groupAlignment="0" attributes="0">
-                                                              <Group type="102" attributes="0">
-                                                                  <EmptySpace max="32767" attributes="0"/>
-                                                                  <Component id="txtUnitPrice" min="-2" max="-2" attributes="0"/>
-                                                              </Group>
-                                                              <Group type="102" alignment="0" attributes="0">
-                                                                  <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                                                                  <Component id="txtQuantity" min="-2" max="-2" attributes="0"/>
-                                                              </Group>
-                                                          </Group>
-                                                      </Group>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="btnQuantity2" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                      <Component id="txtUnitPrice2" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="btnUnitPrice2" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                      <Component id="txtActualPrice2" min="-2" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                           </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="btnActualPrice" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="txtPrice" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                                              <Component id="btnPrice" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="txtID" min="-2" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
-                                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Component id="txtClient" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Component id="btnDate" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="datePicker2" min="-2" max="-2" attributes="0"/>
-                                          </Group>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="btnClient" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                                          <Component id="btnDate" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="datePicker2" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                                          <Component id="btnUnitType" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="txtUnitType1" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="btnQuantity1" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="txtUnitPrice" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="btnUnitPrice1" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="txtActualPrice" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="btnBack" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btnHelp" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="btnUpdate" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnOriginal" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnLoyalty" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="btnViewInvoices" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="btnDelete" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Component id="txtClient" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="26" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="871" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -134,79 +162,86 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnOriginal" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnLoyalty" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnUpdate" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnDelete" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnViewInvoices" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="205" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnBack" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnHelp" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblID" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtID" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnViewInvoices" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnInsert" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
+                          </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtClient" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="datePicker2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtUnitType" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtQuantity" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="btnUnitPrice" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txtUnitPrice" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="btnActualPrice" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txtActualPrice" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="txtPrice" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="btnPrice" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="btnClient" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnDate" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="datePicker2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-                              <Component id="btnClient" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnDate" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                              <Component id="btnUnitType" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnQuantity" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="btnDelete" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnUpdate" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btnUnitType" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtUnitType1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnQuantity1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtUnitPrice" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnUnitPrice1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtActualPrice" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
+                  <Component id="btnOriginal" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnUnitType1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtUnitType" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnQuantity" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtUnitPrice1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnUnitPrice" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtActualPrice1" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnUnitType2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtUnitType2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnQuantity2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtUnitPrice2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnUnitPrice2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtActualPrice2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnLoyalty" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtClient" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnActualPrice" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPrice" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnPrice" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtID" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="50" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="280" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnBack" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnHelp" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
           </Group>
       </Group>
     </DimensionLayout>
@@ -214,7 +249,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Master Table"/>
+        <Property name="text" type="java.lang.String" value="Sale Records"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -227,8 +262,7 @@
         <Component class="javax.swing.JTable" name="tblMaster">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="9" rowCount="0">
-                <Column editable="true" title="ID" type="java.lang.Object"/>
+              <Table columnCount="8" rowCount="0">
                 <Column editable="true" title="Client" type="java.lang.Object"/>
                 <Column editable="true" title="Date" type="java.lang.Object"/>
                 <Column editable="true" title="unitType" type="java.lang.Object"/>
@@ -236,16 +270,11 @@
                 <Column editable="true" title="unitPrice" type="java.lang.Object"/>
                 <Column editable="true" title="Actual Pricel" type="java.lang.Object"/>
                 <Column editable="true" title="Price" type="java.lang.Object"/>
-                <Column editable="true" title="Title 9" type="java.lang.Object"/>
+                <Column editable="true" title="Paid" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
@@ -307,6 +336,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Help"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHelpActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnOriginal">
       <Properties>
@@ -336,11 +368,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnViewInvoicesActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblID">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="ID"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="btnClient">
       <Properties>
         <Property name="text" type="java.lang.String" value="Client"/>
@@ -355,6 +382,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="unitType"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUnitTypeActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnQuantity">
       <Properties>
@@ -368,12 +398,15 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnActualPrice">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Actual Price"/>
+        <Property name="text" type="java.lang.String" value="Price including discount"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActualPriceActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="btnPrice">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Price"/>
+        <Property name="text" type="java.lang.String" value="Total Price"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtID">
@@ -385,15 +418,13 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="jTextField2"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtClientActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtUnitType">
       <Properties>
         <Property name="text" type="java.lang.String" value="jTextField4"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtQuantity">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField5"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtUnitPrice">
@@ -412,6 +443,97 @@
       </Properties>
     </Component>
     <Component class="com.github.lgooddatepicker.components.DatePicker" name="datePicker2">
+    </Component>
+    <Component class="javax.swing.JButton" name="btnInsert">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Insert New Order"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextField1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jTextField1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnUnitType1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="unitType"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUnitType1ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtUnitType1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jTextField4"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnQuantity1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Quantity"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtUnitPrice1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jTextField6"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnUnitPrice1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Unit Price"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtActualPrice1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jTextField7"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnUnitType2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="unitType"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUnitType2ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtUnitType2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jTextField4"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnQuantity2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Quantity"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtUnitPrice2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jTextField6"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnUnitPrice2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Unit Price"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtActualPrice2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jTextField7"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboBox1">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

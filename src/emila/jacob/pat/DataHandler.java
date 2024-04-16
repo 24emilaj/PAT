@@ -34,11 +34,12 @@ public class DataHandler {
                 String clientname = rs.getString("clientName");
                 String contactname = rs.getString("contactName");
                 String contactNum = rs.getString("contactNum");
+                String paymentContact = rs.getString("paymentContact");
                 String deliveryAddress = rs.getString("deliveryAddress");
                 String area = rs.getString("Area");
                 String email = rs.getString("Email");
 
-                Client c = new Client(clientID, clientname, contactname, contactNum, deliveryAddress, area, email);
+                Client c = new Client(clientID, clientname, contactname, contactNum, paymentContact, deliveryAddress, area, email);
                 clients.add(c);
             }
             con.close();
@@ -58,7 +59,7 @@ public class DataHandler {
         int numRows = 0;
         try {
             //INSERT INTO tblClients(clientName,contactName,contactNum,deliveryAddress,Area,Email)VALUES ( "Major Frasers","Julian","046-0040006, 0766406139","Opp the Arch, Somerset Str, Grahamstown","GHT","chef@majorfrasers.co.za");
-            String sql = "INSERT INTO tblClients(clientName,contactName,contactNum,deliveryAddress,Area,Email)VALUES (\"" + c.getClientname() + "\",\"" + c.getContactname() + "\",\"" + c.getContactNum() + "\",\"" + c.getDeliveryAddress() + "\",\"" + c.getArea() + "\",\"" + c.getEmail() + "\")";
+            String sql = "INSERT INTO tblClients(clientName,contactName,contactNum,paymentContact,deliveryAddress,Area,Email)VALUES (\"" + c.getClientname() + "\",\"" + c.getContactname() + "\",\"" + c.getContactNum() + "\",\"" + c.getPaymentContact()+ "\",\"" +c.getDeliveryAddress() + "\",\"" + c.getArea() + "\",\"" + c.getEmail() + "\")";
             Connect con = new Connect();
             con.makeChange(sql);
         } catch (SQLException e) {
@@ -97,7 +98,7 @@ public class DataHandler {
         try {
             //UPDATE tblClients SET clientName = "George", contactName = "G", contactNum = "123456", deliveryAddress = "there" , Area = "NAM", Email = "life@food.com" WHERE clientID = 7
             String sql = "UPDATE tblClients SET clientName = \"" + c.getClientname() + "\", contactName = \"" + c.getContactNum()
-                    + "\", contactNum = \"" + c.getContactNum() + "\", deliveryAddress = \"" + c.getDeliveryAddress() + "\", Area = \""
+                    + "\", contactNum = \"" + c.getContactNum()+ "\", paymentContact = \"" + c.getPaymentContact() + "\", deliveryAddress = \"" + c.getDeliveryAddress() + "\", Area = \""
                     + c.getArea() + "\", Email = \"" + c.getEmail() + "\" WHERE clientID = " + c.getClientID() + ";";
             Connect con = new Connect();
             con.makeChange(sql);

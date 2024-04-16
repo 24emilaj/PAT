@@ -56,7 +56,7 @@ public class StockProjectionsUI extends javax.swing.JFrame {
 
         jLabel3.setText("Select date");
 
-        jLabel4.setText("Amount of eggs Available for purchase");
+        jLabel4.setText("Amount of eggs available for purchase");
 
         txtEggsPurchase.setText("jTextField2");
 
@@ -92,7 +92,7 @@ public class StockProjectionsUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                                 .addComponent(txtEggsPurchase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)

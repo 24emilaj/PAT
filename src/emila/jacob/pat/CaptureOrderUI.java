@@ -5,6 +5,8 @@
  */
 package emila.jacob.pat;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author 24emilaj
@@ -211,7 +213,7 @@ public class CaptureOrderUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUnitQuantityActionPerformed
 
     private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
-        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "1.Click on text field you would like to fill in \n 2. Type in needed information \n 3. Click INSERT to input data");
     }//GEN-LAST:event_btnHelpActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
