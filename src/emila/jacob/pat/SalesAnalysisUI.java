@@ -5,17 +5,54 @@
  */
 package emila.jacob.pat;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author 24emilaj
  */
 public class SalesAnalysisUI extends javax.swing.JFrame {
 
+    private salesAnalysis[] sales;
+
     /**
      * Creates new form SalesAnalysisUI
      */
     public SalesAnalysisUI() {
-        initComponents();
+        //initComponents();
+        DataHandler dh = new DataHandler();
+        this.insertTable();
+
+    }
+
+    private void insertTable() {
+        DataHandler dh = new DataHandler();
+        dh.sales();
+        int numOrders = 0;
+        double totalIncome = 0;
+        //income = 
+        DefaultTableModel dtm = new DefaultTableModel();
+        tblSales.setModel(dtm);
+        Object sales[] = new Object[3];
+        for (int i = 0; i < dh.sales().size(); i++) {
+            sales[0] = "" + dh.sales().get(i).getClientName();
+            for (int j = 0; j < dh.getAllInvoices().size(); j++) {
+                if (dh.sales().get(i).getInvoiceID() == dh.sales().get(j).getInvoiceID()) {
+                    numOrders++;
+                    if (dh.sales().get(i).getClientName().equalsIgnoreCase(dh.sales().get(j).getClientName()) && dh.sales().get(i).getDiscountPercentage() > 0) {
+                        totalIncome = dh.sales().get(i).getPrice() * dh.sales().get(i).getQuantity() * (dh.sales().get(i).getDiscountPercentage()) / 100;
+
+                    } else {
+                        if (("" + dh.sales().get(i).getDiscountPercentage()).equalsIgnoreCase(null) && dh.sales().get(i).getClientName().equalsIgnoreCase(dh.sales().get(j).getClientName())) {
+                            totalIncome = dh.sales().get(i).getPrice() * dh.sales().get(i).getQuantity();
+                        }
+                    }
+                }
+            }
+            sales[1] = "" + numOrders;
+            sales[2] = "" + totalIncome;
+            dtm.addRow(sales);
+        }
     }
 
     /**
@@ -30,7 +67,7 @@ public class SalesAnalysisUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblSales = new javax.swing.JTable();
         btnBack = new javax.swing.JButton();
         btnQuantity = new javax.swing.JButton();
         btnGeneral = new javax.swing.JButton();
@@ -43,18 +80,26 @@ public class SalesAnalysisUI extends javax.swing.JFrame {
 
         jLabel2.setText("Client Loyalty Ranking");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblSales.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Client Name", "no. of orders", "total income"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblSales);
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -175,6 +220,6 @@ public class SalesAnalysisUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblSales;
     // End of variables declaration//GEN-END:variables
 }

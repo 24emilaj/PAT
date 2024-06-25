@@ -10,26 +10,32 @@ package emila.jacob.pat;
  * @author 24emilaj
  */
 public class TrayTypes {
-private int trayTypeID;
-private String type;
-// decide if it is variable type which then can be 12,18,30 
 
-/**
- * Constructor method for trayTypes class
- * @param trayTypeID - id for database to identify tray type
- * @param type - size of tray
- */
+    private int trayTypeID;
+    private String type;
+    private int numEggsPerType;
 
-    public TrayTypes(int trayTypeID, String type) {
+    /**
+     * Constructor method for trayTypes class
+     *
+     * @param trayTypeID - id for database to identify tray type
+     * @param type - size of tray
+     * @param numEggsPerType - number of eggs in tray type
+     */
+    public TrayTypes(int trayTypeID, String type, int numEggsPerType) {
         this.trayTypeID = trayTypeID;
         this.type = type;
+        this.numEggsPerType = numEggsPerType;
     }
-/**
- * Constructor method for inserting new tray types
- * @param type - size of tray
- */
-    public TrayTypes(String type) {
+
+    /**
+     * Constructor method for inserting new tray types
+     * @param type - size of tray
+     * @param numEggsPerType - number of eggs in tray type
+     */
+    public TrayTypes(String type, int numEggsPerType) {
         this.type = type;
+        this.numEggsPerType = numEggsPerType;
     }
 
     public int getTrayTypeID() {
@@ -40,12 +46,15 @@ private String type;
         return type;
     }
 
+    public int getNumEggsPerType() {
+        return numEggsPerType;
+    }
+
     @Override
     public String toString() {
-        return "TrayTypes{" + "trayTypeID=" + trayTypeID + ", type=" + type + '}';
+        return "TrayTypes{" + "trayTypeID=" + trayTypeID + ", type=" + type + ", numEggsPerType=" + numEggsPerType + '}';
     }
     
     
-
 
 }

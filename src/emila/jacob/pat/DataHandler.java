@@ -33,7 +33,7 @@ public class DataHandler {
                 int clientID = rs.getInt("clientID");
                 String clientname = rs.getString("clientName");
                 String contactname = rs.getString("contactName");
-                String contactNum = rs.getString("contactNum");
+                String contactNum = rs.getString("contactNumber");
                 String paymentContact = rs.getString("paymentContact");
                 String deliveryAddress = rs.getString("deliveryAddress");
                 String area = rs.getString("Area");
@@ -43,7 +43,7 @@ public class DataHandler {
                 clients.add(c);
             }
             con.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.err.println(e);
         }
         return clients;
@@ -59,7 +59,7 @@ public class DataHandler {
         int numRows = 0;
         try {
             //INSERT INTO tblClients(clientName,contactName,contactNum,deliveryAddress,Area,Email)VALUES ( "Major Frasers","Julian","046-0040006, 0766406139","Opp the Arch, Somerset Str, Grahamstown","GHT","chef@majorfrasers.co.za");
-            String sql = "INSERT INTO tblClients(clientName,contactName,contactNum,paymentContact,deliveryAddress,Area,Email)VALUES (\"" + c.getClientname() + "\",\"" + c.getContactname() + "\",\"" + c.getContactNum() + "\",\"" + c.getPaymentContact()+ "\",\"" +c.getDeliveryAddress() + "\",\"" + c.getArea() + "\",\"" + c.getEmail() + "\")";
+            String sql = "INSERT INTO tblClients(clientName,contactName,contactNum,paymentContact,deliveryAddress,Area,Email)VALUES (\"" + c.getClientname() + "\",\"" + c.getContactname() + "\",\"" + c.getContactNum() + "\",\"" + c.getPaymentContact() + "\",\"" + c.getDeliveryAddress() + "\",\"" + c.getArea() + "\",\"" + c.getEmail() + "\")";
             Connect con = new Connect();
             con.makeChange(sql);
         } catch (SQLException e) {
@@ -98,7 +98,7 @@ public class DataHandler {
         try {
             //UPDATE tblClients SET clientName = "George", contactName = "G", contactNum = "123456", deliveryAddress = "there" , Area = "NAM", Email = "life@food.com" WHERE clientID = 7
             String sql = "UPDATE tblClients SET clientName = \"" + c.getClientname() + "\", contactName = \"" + c.getContactNum()
-                    + "\", contactNum = \"" + c.getContactNum()+ "\", paymentContact = \"" + c.getPaymentContact() + "\", deliveryAddress = \"" + c.getDeliveryAddress() + "\", Area = \""
+                    + "\", contactNum = \"" + c.getContactNum() + "\", paymentContact = \"" + c.getPaymentContact() + "\", deliveryAddress = \"" + c.getDeliveryAddress() + "\", Area = \""
                     + c.getArea() + "\", Email = \"" + c.getEmail() + "\" WHERE clientID = " + c.getClientID() + ";";
             Connect con = new Connect();
             con.makeChange(sql);
@@ -107,6 +107,7 @@ public class DataHandler {
         }
         return numRows;
     }
+
     //********************************************************************************************************************************
     //Price
     /**
@@ -131,7 +132,7 @@ public class DataHandler {
                 prices.add(p);
             }
             con.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.err.println(e);
         }
         return prices;
@@ -185,7 +186,7 @@ public class DataHandler {
         int numRows = 0;
         try {
             //UPDATE tblPrice SET trayTypeID = 3, dateUpdated = "2024-12-12", price = 2.33 WHERE priceID = 6
-            String sql = "UPDATE tblPrice SET trayTypeID = " + p.getTraytypeID() + ", dateUpdated = \"" + p.getDateUpdated() 
+            String sql = "UPDATE tblPrice SET trayTypeID = " + p.getTraytypeID() + ", dateUpdated = \"" + p.getDateUpdated()
                     + "\", price = " + p.getPrice() + " WHERE priceID = " + p.getPriceID() + ";";
             Connect con = new Connect();
             con.makeChange(sql);
@@ -194,6 +195,7 @@ public class DataHandler {
         }
         return numRows;
     }
+
     //********************************************************************************************************************************
     //Eggs
     /**
@@ -212,16 +214,17 @@ public class DataHandler {
                 int eggBatchID = rs.getInt("eggBatchID");
                 LocalDate date = rs.getDate("date").toLocalDate();
                 int amount = rs.getInt("amount");
-                Eggs egg = new Eggs(eggBatchID,date,amount);
+                Eggs egg = new Eggs(eggBatchID, date, amount);
                 eggs.add(egg);
             }
             con.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.err.println(e);
         }
         return eggs;
     }
-       /**
+
+    /**
      * take a eggBatch as a parameter and insert it into the database
      *
      * @param egg - the eggBatch to be inserted
@@ -231,7 +234,7 @@ public class DataHandler {
         int numRows = 0;
         try {
             //INSERT INTO tblEggs(date,amount) VALUES("2024-03-23",2345)
-            String sql = "INSERT INTO tblEggs(date,amount) VALUES(\"" + egg.getDate() + "\", "+  egg.getAmount() + ")";
+            String sql = "INSERT INTO tblEggs(date,amount) VALUES(\"" + egg.getDate() + "\", " + egg.getAmount() + ")";
             Connect con = new Connect();
             con.makeChange(sql);
         } catch (SQLException e) {
@@ -269,7 +272,7 @@ public class DataHandler {
         int numRows = 0;
         try {
             //UPDATE tblEggs SET date = "2024-03-23", amount = 1234 WHERE eggBatchID = 4
-            String sql = "UPDATE tblEggs SET date = \"" + egg.getDate()+ "\", amount = " + egg.getAmount()
+            String sql = "UPDATE tblEggs SET date = \"" + egg.getDate() + "\", amount = " + egg.getAmount()
                     + "WHERE eggBatchID = " + egg.getEggBatchID() + ";";
             Connect con = new Connect();
             con.makeChange(sql);
@@ -278,9 +281,7 @@ public class DataHandler {
         }
         return numRows;
     }
-    
 
-    
     //********************************************************************************************************************************
     //Invoice
     /**
@@ -306,13 +307,13 @@ public class DataHandler {
                 invoices.add(i);
             }
             con.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.err.println(e);
         }
         return invoices;
     }
-    
-           /**
+
+    /**
      * take a invoice as a parameter and insert it into the database
      *
      * @param i - the invoice to be inserted
@@ -322,7 +323,7 @@ public class DataHandler {
         int numRows = 0;
         try {
             //INSERT INTO tblInvoice(clientID,date,trayTypeID,quantity,discountPercentage) VALUES (3,"2019-06-20",2,6,15)
-            String sql = "INSERT INTO tblInvoice(clientID,date,trayTypeID,quantity,discountPercentage) VALUES (" + i.getClientID() 
+            String sql = "INSERT INTO tblInvoice(clientID,date,trayTypeID,quantity,discountPercentage) VALUES (" + i.getClientID()
                     + ", \"" + i.getDate() + "\", " + i.getTrayTypeID() + ", " + i.getQuantity() + ", " + i.getDicountPercentage() + ")";
             Connect con = new Connect();
             con.makeChange(sql);
@@ -371,6 +372,7 @@ public class DataHandler {
         }
         return numRows;
     }
+
     //********************************************************************************************************************************
     //Orders
     /**
@@ -393,15 +395,15 @@ public class DataHandler {
                 Orders o = new Orders(trackingID, invoiceID, paid, delivered);
                 orders.add(o);
             }
-            
+
             con.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.err.println(e);
         }
         return orders;
     }
-    
-          /**
+
+    /**
      * take a order as a parameter and insert it into the database
      *
      * @param o - the order to be inserted
@@ -450,7 +452,7 @@ public class DataHandler {
         try {
             //UPDATE tblorders SET invoiceID = 10, paid = 1, delivered = 1 WHERE trackingID = 6
             String sql = "UPDATE tblorders SET invoiceID = " + o.getInvoiceID() + ", paid = " + o.isPaid() + ", delivered = "
-                   + o.isDelivered() + " WHERE trackingID = " + o.getTrackingID() + ";";
+                    + o.isDelivered() + " WHERE trackingID = " + o.getTrackingID() + ";";
             Connect con = new Connect();
             con.makeChange(sql);
         } catch (SQLException e) {
@@ -458,6 +460,7 @@ public class DataHandler {
         }
         return numRows;
     }
+
     //********************************************************************************************************************************
     //TrayTypes
     /**
@@ -475,27 +478,28 @@ public class DataHandler {
             while (rs.next()) {
                 int trayTypeID = rs.getInt("trayTypeID");
                 String type = rs.getString("type");
-                TrayTypes t = new TrayTypes(trayTypeID, type);
+                int numEggsPerType = rs.getInt("numEggsPerType");
+                TrayTypes t = new TrayTypes(trayTypeID, type, numEggsPerType);
                 trayTypes.add(t);
             }
             con.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.err.println(e);
         }
         return trayTypes;
     }
-    
-           /**
+
+    /**
      * take a trayType as a parameter and insert it into the database
      *
      * @param t - the trayType to be inserted
      * @return number of rows changed
      */
-    public int insertTrayTypes (TrayTypes t) {
+    public int insertTrayTypes(TrayTypes t) {
         int numRows = 0;
         try {
             //INSERT INTO tbltraytypes(traytypeID, type) VALUES (4,"24's")
-            String sql = "INSERT INTO tbltraytypes(traytypeID, type) VALUES(" + t.getTrayTypeID() + ", \"" + t.getType() + "\")";
+            String sql = "INSERT INTO tbltraytypes( type,numEggsPerType) VALUES(\"" + t.getType() + "\", \"" + t.getNumEggsPerType() + "\" )";
             Connect con = new Connect();
             con.makeChange(sql);
         } catch (SQLException e) {
@@ -510,11 +514,11 @@ public class DataHandler {
      * @param t - the trayType to be deleted
      * @return number of rows changed
      */
-    public int deleteTrayTypes (TrayTypes t) {
+    public int deleteTrayTypes(TrayTypes t) {
         int numRows = 0;
         try {
             //DELETE FROM tbltraytypes WHERE trayTypeID = 4
-            String sql = "DELETE FROM tbltraytypes WHERE trayTypeID = " + t.getTrayTypeID() +  ";";
+            String sql = "DELETE FROM tbltraytypes WHERE trayTypeID = " + t.getTrayTypeID() + ";";
             Connect con = new Connect();
             con.makeChange(sql);
         } catch (SQLException e) {
@@ -524,7 +528,7 @@ public class DataHandler {
     }
 
     /**
-     * take a trayType as a parameter and updates in the database
+     * take a trayType as a parameter and updates it in the database
      *
      * @param t - the trayType to be updated
      * @return number of rows changed
@@ -534,14 +538,153 @@ public class DataHandler {
         int numRows = 0;
         try {
             //UPDATE chickenfarmdb.tblTrayTypes SET traytypeID = 5, type = "1" WHERE trayTypeID = 9
-            String sql = "UPDATE tblTrayTypes SET traytypeID = " + t.getTrayTypeID() + ", type = \"" + t.getType() 
-                    + "\" WHERE traytypeID = " + t.getTrayTypeID() + ";";
+            String sql = "UPDATE tblTrayTypes SET traytypeID = " + t.getTrayTypeID() + ", type = \"" + t.getType()
+                    + "\", numEggsPerType = \"" + t.getNumEggsPerType() + "\" WHERE traytypeID = " + t.getTrayTypeID() + ";";
             Connect con = new Connect();
             con.makeChange(sql);
         } catch (SQLException e) {
             System.err.println(e);
         }
         return numRows;
+    }
+
+    //**********************************************************************************************************
+    //Coop
+    /**
+     * This method gets all of the coops in the database makes coopName objects
+     * from data, puts them in arraylist and returns arraylist
+     *
+     * @return arraylist<Coop> - contains all coop names in the database
+     */
+    public ArrayList<Coop> getAllCoops() {
+        ArrayList<Coop> coops = new ArrayList();
+        try {
+            String sql = "SELECT * FROM chickenfarmdb.tblcoops";
+            Connect con = new Connect();
+            ResultSet rs = con.query(sql);
+            while (rs.next()) {
+                int coopID = rs.getInt("coopID");
+                String coopName = rs.getString("coopName");
+                Coop c = new Coop(coopID, coopName);
+                coops.add(c);
+            }
+            con.close();
+        } catch (SQLException e) {
+            System.err.println(e);
+        }
+        return coops;
+    }
+
+    /**
+     * take a coop as a parameter and inserts it into the database
+     *
+     * @param c - the coopNames to be inserted
+     * @return number of rows changed
+     */
+    public int insertCoop(Coop c) {
+        int numRows = 0;
+        try {
+            //INSERT INTO tblcoops(coopName) VALUES("D1")
+            String sql = "INSERT INTO tblcoops(coopName) VALUES( \"" + c.getCoopName() + "\")";
+            Connect con = new Connect();
+            con.makeChange(sql);
+            //numRows++;
+        } catch (SQLException e) {
+            System.err.println(e);
+        }
+        return numRows;
+    }
+
+    /**
+     * deletes coopName from the database
+     *
+     * @param c - the coop to be deleted
+     * @return number of rows changed
+     */
+    public int deleteCoop(Coop c) {
+        int numRows = 0;
+        try {
+            //DELETE FROM tblcoops WHERE coopID = 9
+            String sql = "DELETE FROM tblcoops WHERE coopID = " + c.getCoopID() + ";";
+            Connect con = new Connect();
+            con.makeChange(sql);
+        } catch (SQLException e) {
+            System.err.println(e);
+        }
+        return numRows;
+    }
+
+    /**
+     * take a coop as a parameter and updates it in the database
+     *
+     * @param c - the coop to be updated
+     * @return number of rows changed
+     */
+    public int updateCoop(Coop c) {
+
+        int numRows = 0;
+        try {
+            //UPDATE tblcoops SET coopName = "S4" WHERE coopID = 8
+            String sql = "UPDATE tblcoops SET coopName = \"" + c.getCoopName()
+                    + "\"  WHERE coopID = " + c.getCoopID() + ";";
+            Connect con = new Connect();
+            con.makeChange(sql);
+        } catch (SQLException e) {
+            System.err.println(e);
+        }
+        return numRows;
+    }
+
+//################################################################################################################
+    //SELECT clientName, price, quantity, discountPercentage, invoiceid
+    //FROM chickenfarmdb.tblinvoice, chickenfarmdb.tblclients, chickenfarmdb.tblprice
+    //WHERE tblinvoice.clientID = tblclients.clientID
+    //AND tblprice.dateUpdated = tblinvoice.date
+//    //       public ArrayList<Coop> getAllCoops() {
+//        ArrayList<Coop> coops = new ArrayList();
+//        try {
+//            String sql = "SELECT * FROM chickenfarmdb.tblcoops";
+//            Connect con = new Connect();
+//            ResultSet rs = con.query(sql);
+//            while (rs.next()) {
+//                int coopID = rs.getInt("coopID");
+//                String coopName = rs.getString("coopName");
+//                Coop c = new Coop(coopID, coopName);
+//                coops.add(c);
+//            }
+//            con.close();
+//        } catch (SQLException e) {
+//            System.err.println(e);
+//        }
+//        return coops;
+//    }
+    public ArrayList<salesAnalysis> sales() {
+        ArrayList<salesAnalysis> sales = new ArrayList();
+        try {
+
+            //SELECT clientName, price, quantity, discountPercentage, invoiceid
+            //FROM chickenfarmdb.tblinvoice, chickenfarmdb.tblclients, chickenfarmdb.tblprice
+            //WHERE tblinvoice.clientID = tblclients.clientID
+            //AND tblprice.dateUpdated = tblinvoice.date
+            String sql = "SELECT clientName, price, quantity, discountPercentage, invoiceid "
+                    + "FROM chickenfarmdb.tblinvoice, chickenfarmdb.tblclients, chickenfarmdb.tblprice "
+                    + "WHERE tblinvoice.clientID = tblclients.clientID AND tblprice.dateUpdated = tblinvoice.date;";
+           
+            Connect con = new Connect();
+            ResultSet rs = con.query(sql);
+            while (rs.next()) {
+                String clientName = rs.getString("clientName");
+                double price = rs.getDouble("price");
+                int quantity = rs.getInt("quantity");
+                int discountPercentage = rs.getInt("disscountPercentage");
+                int invoiceID = rs.getInt("invoiceID");
+                salesAnalysis s = new salesAnalysis(clientName, price, quantity, discountPercentage, invoiceID);
+                sales.add(s);
+            }
+        } catch (SQLException e) {
+            System.err.println(e);
+        }
+        return sales;
     }
 
 }

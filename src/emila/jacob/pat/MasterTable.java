@@ -16,6 +16,10 @@ import javax.swing.table.DefaultTableModel;
 public class MasterTable extends javax.swing.JFrame {
 
     private ArrayList<Client> clients = new ArrayList();
+    private ArrayList<Price> prices = new ArrayList();
+    private ArrayList<Invoice> invoices = new ArrayList();
+    private ArrayList<TrayTypes> trayTypes = new ArrayList();
+    private ArrayList<Orders> orders = new ArrayList();
     private DataHandler dh;
 
     /**
@@ -24,33 +28,61 @@ public class MasterTable extends javax.swing.JFrame {
     public MasterTable() {
         initComponents();
         dh = new DataHandler();
+        this.insertTable();
+       
     }
 
-    public ArrayList clients() {
-        ArrayList<Client> list = new ArrayList<Client>();
-//        Client c1 = new Client("q", "w", "e", "r", "t", "y");
-//        Client c2 = new Client("q", "w", "e", "r", "t", "y");
-//        Client c3 = new Client("q", "w", "e", "r", "t", "y");
-//        Client c4 = new Client("q", "w", "e", "r", "t", "y");
-//        Client c5 = new Client("q", "w", "e", "r", "t", "y");
-//        list.add(c5);
-//        list.add(c4);
-//        list.add(c3);
-//        list.add(c2);
-//        list.add(c1);
-        return list;
-    }
+//    public ArrayList clients() {
+//        ArrayList<Client> list = new ArrayList<Client>();
+////        Client c1 = new Client("q", "w", "e", "r", "t", "y");
+////        Client c2 = new Client("q", "w", "e", "r", "t", "y");
+////        Client c3 = new Client("q", "w", "e", "r", "t", "y");
+////        Client c4 = new Client("q", "w", "e", "r", "t", "y");
+////        Client c5 = new Client("q", "w", "e", "r", "t", "y");
+////        list.add(c5);
+////        list.add(c4);
+////        list.add(c3);
+////        list.add(c2);
+////        list.add(c1);
+//        return list;
+//    }
 
-    private void tblMaster() {
-        // clients = dh.getAllClients();
+//    private void tblMaster() {
+//        // clients = dh.getAllClients();
+//        DefaultTableModel dtm = new DefaultTableModel();
+//        ArrayList<Client> list = clients();
+//        Object rowData[] = new Object[5];
+//        for (int i = 0; i < clients.size(); i++) {
+////        dtm.addColumn(i);
+//            rowData[0] = list.get(i);
+//            dtm.addRow(rowData);
+//        }
+//    }
+    
+    private void insertTable(){
+        DataHandler dh = new DataHandler();
+         dh.getAllClients();
+         dh.getAllPrices();
+         dh.getAllInvoices();
+         dh.getAlltrayTypes();
+         dh.getAllOrders();
         DefaultTableModel dtm = new DefaultTableModel();
-        ArrayList<Client> list = clients();
-        Object rowData[] = new Object[5];
-        for (int i = 0; i < clients.size(); i++) {
-//        dtm.addColumn(i);
-            rowData[0] = list.get(i);
-            dtm.addRow(rowData);
+        tblMaster.setModel(dtm);
+    Object master[] = new Object[8]; 
+        for (int i = 0; i < dh.getAllInvoices().size(); i++) {
+            master[0] = "" + clients.get(i).getClientname();
+            master[1] = "" + invoices.get(i).getDate();
+            master[2] = "" + trayTypes.get(i).getType();
+            master[3] = "" + invoices.get(i).getQuantity(); //use quantity 
+            master[4] = "" + prices.get(i).getPrice();
+            master[5] = "" + orders.get(i).isPaid(); //paid
+            dtm.addRow(master);
+        //    clientRow[1] = "" + clients.get(i).get date from tbl invoices
+    //    clientRow[2] = "" + clients.get(i)
         }
+        
+        tblMaster.setSelectionMode(0); //set selection to 1st product
+       // selected = tblMaster.getSelectedRow();
     }
 
     /**
@@ -115,7 +147,7 @@ public class MasterTable extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Client", "Date", "unitType", "Quantity", "unitPrice", "Actual Pricel", "Price", "Paid"
+                "Client", "Date", "unitType", "Quantity", "Price", "Paid"
             }
         ));
         jScrollPane1.setViewportView(tblMaster);
@@ -315,7 +347,7 @@ public class MasterTable extends javax.swing.JFrame {
                                             .addComponent(btnUnitPrice1)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(txtActualPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnUpdate, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(btnOriginal, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -329,10 +361,9 @@ public class MasterTable extends javax.swing.JFrame {
                                     .addGap(12, 12, 12)))
                             .addComponent(txtClient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(50, 50, 50))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 26, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 871, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -395,9 +426,9 @@ public class MasterTable extends javax.swing.JFrame {
                     .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPrice)
                     .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBack)
                     .addComponent(btnHelp)))

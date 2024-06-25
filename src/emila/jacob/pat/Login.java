@@ -5,6 +5,13 @@
  */
 package emila.jacob.pat;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 /**
  *
  * @author 24emilaj
@@ -16,6 +23,20 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        this.image();
+    }
+
+    public void image() {
+        try {
+            BufferedImage logo = ImageIO.read(new File("C:/Emila PAT/PAT/logo.jpg"));
+            JLabel lblLogo = new JLabel(new ImageIcon(logo));
+            add(lblLogo).setVisible(true);
+            //lblLogo.setVisible(true);
+            //this.setVisible(true);
+        } catch (IOException e) {
+            System.err.println(e);
+        }
+
     }
 
     /**
@@ -27,7 +48,7 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        lblLogo = new javax.swing.JLabel();
         login = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -37,7 +58,7 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("logo");
+        lblLogo.setText("0");
 
         login.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         login.setText("Login");
@@ -88,7 +109,7 @@ public class Login extends javax.swing.JFrame {
                                     .addComponent(usernameenter, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(174, 174, 174)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(115, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -100,8 +121,8 @@ public class Login extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(login)
-                .addGap(34, 34, 34)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(74, 74, 74)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -110,7 +131,7 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(passwordenter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(btnlogin)
                 .addContainerGap())
         );
@@ -122,16 +143,24 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_usernameenterActionPerformed
 
+    //Icon icon = new ImageIcon(getClass().getResource("SV_Logo.jdk"));
+    // JLabel lblLogo = new JLabel("An icon", image);
+
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
         MenuUI m = new MenuUI();
-//        if (usernameenter.getText().equalsIgnoreCase("jana")) {
-//            if (passwordenter.getText().equalsIgnoreCase("chicken")) {
-//                m.setVisible(true);
+//        try {
+//            if (usernameenter.getText().equalsIgnoreCase("jana")) {
+//                if (passwordenter.getText().equalsIgnoreCase("chicken")) {
+//                    m.setVisible(true);
+//                }
+//
 //            }
-
+//        } catch (Exception e) {
+//            System.err.println(e);
 //        }
-m.setVisible(true);
-setVisible(false);
+
+        m.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_btnloginActionPerformed
 
     private void passwordenterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordenterActionPerformed
@@ -169,15 +198,16 @@ setVisible(false);
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Login().setVisible(true);
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnlogin;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel login;
     private javax.swing.JTextField passwordenter;
     private javax.swing.JTextField usernameenter;

@@ -91,6 +91,11 @@ public class MenuUI extends javax.swing.JFrame {
         });
 
         btnLogOut.setText("Log Out");
+        btnLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogOutActionPerformed(evt);
+            }
+        });
 
         btnHelp.setText("Help");
 
@@ -176,7 +181,7 @@ public class MenuUI extends javax.swing.JFrame {
     private void btnCaptureOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaptureOrderActionPerformed
         CaptureOrderUI co = new CaptureOrderUI();
         co.setVisible(true);
-        setVisible(false);
+        this.setVisible(false);
     }//GEN-LAST:event_btnCaptureOrderActionPerformed
 
     private void btnStockProjectionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStockProjectionsActionPerformed

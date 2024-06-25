@@ -100,18 +100,18 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="lblMenu">
       <Properties>
+        <Property name="text" type="java.lang.String" value="Menu"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="36" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Menu"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnMasterTable">
       <Properties>
+        <Property name="text" type="java.lang.String" value="Master Table"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="36" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Master Table"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMasterTableActionPerformed"/>
@@ -127,10 +127,10 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnSalesAnalysis">
       <Properties>
+        <Property name="text" type="java.lang.String" value="Sales Analysis"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="24" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Sales Analysis"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalesAnalysisActionPerformed"/>
@@ -138,10 +138,10 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnStockProduced">
       <Properties>
+        <Property name="text" type="java.lang.String" value="Stock Produced"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="24" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Stock Produced"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnStockProducedActionPerformed"/>
@@ -149,10 +149,10 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnStockProjections">
       <Properties>
+        <Property name="text" type="java.lang.String" value="Stock Projections"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="24" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Stock Projections"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnStockProjectionsActionPerformed"/>
@@ -160,10 +160,10 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnCapturePrice">
       <Properties>
+        <Property name="text" type="java.lang.String" value="Price Adjustments"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="24" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Price Adjustments"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCapturePriceActionPerformed"/>
@@ -173,6 +173,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Log Out"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLogOutActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnHelp">
       <Properties>
