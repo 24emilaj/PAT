@@ -19,6 +19,7 @@ public class EmilaJacobPAT {
      */
     public static void main(String[] args) {
         DataHandler dh = new DataHandler();
+       // System.out.println(dh.sales());
 ////       Client c = new Client("ab", "ba", "12345", "23gt", "GHT", "food@life.com");
 ////       dh.insertNewClient(c);
 //       Client c2 = new Client(2,"cool", "ytr", "1235545", "456yt", "nam", "food@lifesss.com");
@@ -87,7 +88,8 @@ Login l = new Login();
 l.setVisible(true);
 //MenuUI m = new MenuUI();
 //m.setVisible(true);
-System.out.println(dh.sales().toString());
+//System.out.println(dh.sales().toString());
+//System.out.println(dh.getAllInvoices());
     }
 
 }

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -662,29 +663,75 @@ public class DataHandler {
         ArrayList<salesAnalysis> sales = new ArrayList();
         try {
 
-            //SELECT clientName, price, quantity, discountPercentage, invoiceid
-            //FROM chickenfarmdb.tblinvoice, chickenfarmdb.tblclients, chickenfarmdb.tblprice
-            //WHERE tblinvoice.clientID = tblclients.clientID
-            //AND tblprice.dateUpdated = tblinvoice.date
-            String sql = "SELECT clientName, price, quantity, discountPercentage, invoiceid "
-                    + "FROM chickenfarmdb.tblinvoice, chickenfarmdb.tblclients, chickenfarmdb.tblprice "
-                    + "WHERE tblinvoice.clientID = tblclients.clientID AND tblprice.dateUpdated = tblinvoice.date;";
-           
+////SELECT tblclients.clientName, tblprice.price, tblinvoice.quantity, tblinvoice.discountPercentage, tblinvoice.invoiceid
+// FROM chickenfarmdb.tblinvoice, chickenfarmdb.tblclients, chickenfarmdb.tblprice
+// WHERE tblinvoice.clientID = tblclients.clientID
+// AND tblprice.dateUpdated = tblinvoice.date
+            //String sql = "SELECT tblclients.clientName, tblprice.price, tblinvoice.quantity, tblinvoice.discountPercentage, tblinvoice.invoiceid FROM chickenfarmdb.tblinvoice, chickenfarmdb.tblclients, chickenfarmdb.tblprice WHERE tblinvoice.clientID = tblclients.clientID AND month(tblprice.dateUpdated) = month(tblinvoice.date) AND year(tblprice.dateUpdated) = year(tblinvoice.date)";
+            String sql = "SELECT tblclients.clientName, SUM(tblprice.price*tblinvoice.quantity - tblprice.price*tblinvoice.quantity*tblinvoice.discountPercentage/100) AS totalIncome,\n"
+                    + "COUNT(*) AS numOrders\n"
+                    + "FROM chickenfarmdb.tblinvoice, chickenfarmdb.tblclients, chickenfarmdb.tblprice\n"
+                    + "WHERE tblinvoice.clientID = tblclients.clientID AND month(tblprice.dateUpdated) = month(tblinvoice.date) AND year(tblprice.dateUpdated) = year(tblinvoice.date)\n"
+                    + "GROUP BY tblclients.clientID,tblclients.clientName;";
             Connect con = new Connect();
             ResultSet rs = con.query(sql);
             while (rs.next()) {
                 String clientName = rs.getString("clientName");
-                double price = rs.getDouble("price");
-                int quantity = rs.getInt("quantity");
-                int discountPercentage = rs.getInt("disscountPercentage");
-                int invoiceID = rs.getInt("invoiceID");
-                salesAnalysis s = new salesAnalysis(clientName, price, quantity, discountPercentage, invoiceID);
+                //System.out.println(clientName);
+
+                double totalIncome = rs.getDouble("totalIncome");
+                int numOrders = rs.getInt("numOrders");
+                //System.out.println(price);
+//                int quantity = rs.getInt("quantity");
+//                int discountPercentage = rs.getInt("discountPercentage");
+//                int invoiceID = rs.getInt("invoiceID");
+                salesAnalysis s = new salesAnalysis(clientName, totalIncome, numOrders);
                 sales.add(s);
             }
         } catch (SQLException e) {
             System.err.println(e);
         }
         return sales;
+    }
+
+    public ArrayList<StockProduced> stockProduced() {
+        ArrayList<StockProduced> stockProduced = new ArrayList();
+        try {
+            String sql = "SELECT coopName, amount, date AS Date\n"
+                    + " FROM chickenfarmdb.tbleggs, chickenfarmdb.tblcoops\n"
+                    + " ORDER BY date;";
+            Connect con = new Connect();
+            ResultSet rs = con.query(sql);
+            while (rs.next()) {
+                String coopName = rs.getString("coopName");
+                int amount = rs.getInt("amount");
+                String sDate = rs.getString("date");
+//                System.out.println(sDate);
+                DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate date = LocalDate.parse(sDate, df);
+                StockProduced sp = new StockProduced(coopName, amount, date);
+                stockProduced.add(sp);
+            }
+        } catch (SQLException e) {
+            System.err.println(e);
+        }
+        return stockProduced;
+    }
+    //*********************Stock Projection**********************************
+
+    public int avgEggs() {
+        int avg = 0;
+        try {
+            String sql = "SELECT ROUND(avg(amount)) AS avgEggs FROM chickenfarmdb.tbleggs;";
+            Connect con = new Connect();
+            ResultSet rs = con.query(sql);
+            while (rs.next()) {
+             avg = rs.getInt("avgEggs");
+            }
+        } catch (SQLException e) {
+            System.err.println(e);
+        }
+        return avg;
     }
 
 }

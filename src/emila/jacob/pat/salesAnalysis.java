@@ -14,70 +14,52 @@ public class salesAnalysis {
             //WHERE tblinvoice.clientID = tblclients.clientID
             //AND tblprice.dateUpdated = tblinvoice.date
 private String clientName;
-private double price;
-private int quantity, discountPercentage, invoiceID;
- 
+private double totalIncome;
+private int numOrders;
 
-//private int numOrders;
-//private double totalIncome;
-//
-//private Client[] clients;
-//private Orders[] orders;
-//private Invoice[] invoices;
-
-
-
-//    public salesAnalysis() {
-//        
-//      //  String [][] arrays = new String[][]{clients,orders,invoices};
-//        DataHandler dh = new DataHandler();
-//       // Client clients = new Client();
-//        for (int i = 0; i < dh.getAllClients().size(); i++) {
-//          //  clientName = dh.getAllClients().;
-//            //currently gets num of all orders and needs orders from 1 client if client id = id
-////            if (clients[i].getClientID() == ) {
-////                
-////            }
-//            numOrders = dh.getAllOrders().size();
-//          //  totalIncome = dh.getAllInvoices();
-//          
-//          
-//        }
-//        
-//    }
-
-    public salesAnalysis(String clientName, double price, int quantity, int discountPercentage, int invoiceID) {
+    public salesAnalysis(String clientName, double totalIncome, int numOrders) {
         this.clientName = clientName;
-        this.price = price;
-        this.quantity = quantity;
-        this.discountPercentage = discountPercentage;
-        this.invoiceID = invoiceID;
+        this.totalIncome = totalIncome;
+        this.numOrders = numOrders;
     }
+
+    
 
     public String getClientName() {
         return clientName;
     }
 
-    public double getPrice() {
-        return price;
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public double getTotalIncome() {
+        return totalIncome;
     }
 
-    public int getDiscountPercentage() {
-        return discountPercentage;
+    public void setTotalIncome(double totalIncome) {
+        this.totalIncome = totalIncome;
     }
 
-    public int getInvoiceID() {
-        return invoiceID;
+    public int getNumOrders() {
+        return numOrders;
+    }
+
+    public void setNumOrders(int numOrders) {
+        this.numOrders = numOrders;
     }
 
     @Override
     public String toString() {
-        return "salesAnalysis{" + "clientName=" + clientName + ", price=" + price + ", quantity=" + quantity + ", discountPercentage=" + discountPercentage + ", invoiceID=" + invoiceID + '}';
+        return "salesAnalysis{" + "clientName=" + clientName + ", totalIncome=" + totalIncome + ", numOrders=" + numOrders + '}';
     }
+
+ 
+
+
+ 
+
+
     
     
 

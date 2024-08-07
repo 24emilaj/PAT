@@ -5,17 +5,51 @@
  */
 package emila.jacob.pat;
 
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author 24emilaj
  */
 public class StockProducedUI extends javax.swing.JFrame {
 //coops and egg
+
+    private ArrayList<StockProduced> stockProduced;
+        DataHandler dh = new DataHandler();
     /**
      * Creates new form StockProducedUI
      */
     public StockProducedUI() {
         initComponents();
+        this.insertTable();
+        txtavgEggs.setText("" + dh.avgEggs());
+        txtavgEggs.setEditable(false);
+
+    }
+
+//    public void test() {
+//        DataHandler dh = new DataHandler();
+//        for (int i = 0; i < dh.stockProduced().size(); i++) {
+//            System.out.println(dh.stockProduced().get(i));
+//        }
+//    }
+    
+/**
+ * takes stockProduced arrayList and enters each stockProduced object into a new row into the tblStock table
+ */
+    public void insertTable() {
+        stockProduced = dh.stockProduced();
+        DefaultTableModel dtm = (DefaultTableModel) tblStock.getModel();
+        tblStock.setModel(dtm);
+        Object stock[] = new Object[3];
+        // make a thick line btw every day
+        for (int i = 0; i < stockProduced.size(); i++) {
+            stock[0] = stockProduced.get(i).getCoopName();
+            stock[1] = stockProduced.get(i).getAmount();
+            stock[2] = stockProduced.get(i).getDate();
+            dtm.addRow(stock);
+        }
     }
 
     /**
@@ -29,9 +63,9 @@ public class StockProducedUI extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblStock = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtavgEggs = new javax.swing.JTextField();
         btnBack = new javax.swing.JButton();
         btnHelp = new javax.swing.JButton();
         btnInsert = new javax.swing.JButton();
@@ -43,12 +77,9 @@ public class StockProducedUI extends javax.swing.JFrame {
 
         jLabel1.setText("Stock Produced");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblStock.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Coop Name", "no. of Eggs", "Date"
@@ -62,11 +93,11 @@ public class StockProducedUI extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblStock);
 
         jLabel2.setText("average produced per day (based on last month)");
 
-        jTextField1.setText("jTextField1");
+        txtavgEggs.setText("jTextField1");
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -107,7 +138,7 @@ public class StockProducedUI extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtavgEggs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(datePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -122,7 +153,7 @@ public class StockProducedUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtavgEggs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(datePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -137,7 +168,11 @@ public class StockProducedUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * creates a new  menuUI and makes it visible
+ * makes stockProducedUI invisible
+ * @param evt 
+ */
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         MenuUI m = new MenuUI();
         m.setVisible(true);
@@ -189,7 +224,7 @@ public class StockProducedUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tblStock;
+    private javax.swing.JTextField txtavgEggs;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,7 @@
  */
 package emila.jacob.pat;
 
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -13,48 +14,87 @@ import javax.swing.table.DefaultTableModel;
  */
 public class SalesAnalysisUI extends javax.swing.JFrame {
 
-    private salesAnalysis[] sales;
+    private ArrayList<salesAnalysis> sales;
+    private ArrayList<Client> clients;
+    private ArrayList<Invoice> invoices;
 
+    //   private salesAnalysis[] sales;
     /**
      * Creates new form SalesAnalysisUI
      */
     public SalesAnalysisUI() {
-        //initComponents();
-        DataHandler dh = new DataHandler();
+        initComponents();
+        // DataHandler dh = new DataHandler();
         this.insertTable();
+        //    this.addTable();
 
     }
+
+    public void testPrintDeleteMe() {
+        for (int i = 0; i < sales.size(); i++) {
+            System.out.print(sales.get(i));
+        }
+    }
+//stackoverflow
 
     private void insertTable() {
         DataHandler dh = new DataHandler();
-        dh.sales();
-        int numOrders = 0;
-        double totalIncome = 0;
+        /*ArrayList<salesAnalysis>*/ sales = dh.sales();
+//        invoices = dh.getAllInvoices();
+//        clients = dh.getAllClients();
+        //testPrintDeleteMe();
+        
+//        double totalIncome = 0;
         //income = 
-        DefaultTableModel dtm = new DefaultTableModel();
+
+        DefaultTableModel dtm = (DefaultTableModel) tblSales.getModel();
         tblSales.setModel(dtm);
-        Object sales[] = new Object[3];
-        for (int i = 0; i < dh.sales().size(); i++) {
-            sales[0] = "" + dh.sales().get(i).getClientName();
-            for (int j = 0; j < dh.getAllInvoices().size(); j++) {
-                if (dh.sales().get(i).getInvoiceID() == dh.sales().get(j).getInvoiceID()) {
-                    numOrders++;
-                    if (dh.sales().get(i).getClientName().equalsIgnoreCase(dh.sales().get(j).getClientName()) && dh.sales().get(i).getDiscountPercentage() > 0) {
-                        totalIncome = dh.sales().get(i).getPrice() * dh.sales().get(i).getQuantity() * (dh.sales().get(i).getDiscountPercentage()) / 100;
+        Object sale[] = new Object[3];
+        for (int i = 0; i < sales.size(); i++) {
+            sale[0] = "" + sales.get(i).getClientName();
+            sale[1] = "" + sales.get(i).getTotalIncome();
+//            for (int j = 0; j < invoices.size(); j++) {
+//                if (invoices.get(i).getClientID() == clients.get(i).getClientID() && sales.get(i).getClientName().equalsIgnoreCase(sales.get(i).getClientName())) {
+//                    numOrders++;
+//                }
+//            }
+//            System.out.println(numOrders);
+//       //
+            sale[2] = "" + sales.get(i).getNumOrders();
+            dtm.addRow(sale);
+//            for (int j = 0; j < dh.getAllInvoices().size(); j++) {
+//                if (sales.get(i).getInvoiceID() == sales.get(j).getInvoiceID()) {
+//                    numOrders++;
+//                    //   System.out.println(numOrders);
+//                    if (sales.get(i).getClientName().equalsIgnoreCase(sales.get(j).getClientName()) && sales.get(i).getDiscountPercentage() > 0) {
+//                        totalIncome = sales.get(i).getPrice() * sales.get(i).getQuantity() * (sales.get(i).getDiscountPercentage()) / 100;
+//
+//                    } else {
+//                        if (("" + sales.get(i).getDiscountPercentage()).equalsIgnoreCase(null) && sales.get(i).getClientName().equalsIgnoreCase(sales.get(j).getClientName())) {
+//                            totalIncome = sales.get(i).getQuantity() * sales.get(i).getPrice();
+//                            //     System.out.println(totalIncome);
+//                        }
+//                    }
+//                }
 
-                    } else {
-                        if (("" + dh.sales().get(i).getDiscountPercentage()).equalsIgnoreCase(null) && dh.sales().get(i).getClientName().equalsIgnoreCase(dh.sales().get(j).getClientName())) {
-                            totalIncome = dh.sales().get(i).getPrice() * dh.sales().get(i).getQuantity();
-                        }
-                    }
-                }
-            }
-            sales[1] = "" + numOrders;
-            sales[2] = "" + totalIncome;
-            dtm.addRow(sales);
+//            this.add(tblSales);
+//            tblSales.setVisible(true);
         }
+        tblSales.setRowSelectionInterval(0, 0);
     }
+//
+//    public void addTable() {
+//        JTable tblSales = new JTable();
+//        JScrollPane spTable = new JScrollPane(tblSales);
+//        JPanel panel = new JPanel();
+//
+//        panel.add(spTable);
+//
+//    }
 
+    //JScrollPane spTable = new JScrollPane(table);
+//JPanel panel = new JPanel();
+//panel.add(spTable);
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -82,17 +122,14 @@ public class SalesAnalysisUI extends javax.swing.JFrame {
 
         tblSales.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
-                "Client Name", "no. of orders", "total income"
+                "clientname", "totalIncome", "numOrders"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -123,28 +160,30 @@ public class SalesAnalysisUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(39, 39, 39)
                         .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(73, 73, 73)
                         .addComponent(btnQuantity)
                         .addGap(18, 18, 18)
                         .addComponent(btnGeneral)
                         .addGap(18, 18, 18)
-                        .addComponent(btnPayment)))
-                .addContainerGap(42, Short.MAX_VALUE))
+                        .addComponent(btnPayment))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(btnBack)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnHelp)
-                .addGap(19, 19, 19))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(30, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnBack)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnHelp)
+                        .addGap(19, 19, 19))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,14 +192,14 @@ public class SalesAnalysisUI extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnQuantity)
                     .addComponent(btnGeneral)
                     .addComponent(btnPayment))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBack)
                     .addComponent(btnHelp))

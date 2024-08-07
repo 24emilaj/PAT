@@ -11,11 +11,16 @@ package emila.jacob.pat;
  */
 public class StockProjectionsUI extends javax.swing.JFrame {
 
+    DataHandler dh = new DataHandler();
+
     /**
      * Creates new form StockProjectionsUI
      */
     public StockProjectionsUI() {
         initComponents();
+        txteggsPerDay.setText("" + dh.avgEggs());
+        txteggsPerDay.setEditable(false);
+
     }
 
     /**
@@ -133,7 +138,8 @@ public class StockProjectionsUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txteggsPerDayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txteggsPerDayActionPerformed
-        // TODO add your handling code here:
+
+
     }//GEN-LAST:event_txteggsPerDayActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
