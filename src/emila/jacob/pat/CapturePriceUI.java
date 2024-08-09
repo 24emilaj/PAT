@@ -5,17 +5,65 @@
  */
 package emila.jacob.pat;
 
+//import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
+import java.awt.Color;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author 24emilaj
  */
 public class CapturePriceUI extends javax.swing.JFrame {
 
+    private DataHandler dh = new DataHandler();
+
     /**
      * Creates new form CapturePriceUI
      */
     public CapturePriceUI() {
         initComponents();
+        this.insertDropDown();
+        // ad a view pricelist option and then be able to delete or update prices based on dates
+
+    }
+//
+//    public void getNewPrice() {
+//
+//
+//    }
+
+    public void insertDropDown() {
+        String out = "";
+        ArrayList<TrayTypes> trayTypes = dh.getAlltrayTypes();
+        for (int i = 0; i < trayTypes.size(); i++) {
+            out = trayTypes.get(i).getType();
+            // dropDown.add(out);
+            dropDown.addItem(out);
+        }
+
+    }
+
+    public double doubleNewPrice() {
+        String sPrice = txtInputPrice.getText();
+        double newPrice=0;
+        boolean dbl;
+        try {
+            newPrice = Double.parseDouble(sPrice);
+            dbl = true;
+        } catch (Exception e) {
+            dbl = false;
+        }
+
+        if (dbl) {
+            newPrice = Double.parseDouble(sPrice);
+        } else {
+            JOptionPane.showMessageDialog(null, "enter a valid price");
+               txtInputPrice.setBackground(Color.red);
+        }
+        return newPrice;
     }
 
     /**
@@ -33,14 +81,15 @@ public class CapturePriceUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtInputPrice = new javax.swing.JTextField();
         btnSetPrice = new javax.swing.JButton();
         btnHelp = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
-        datePicker1 = new com.github.lgooddatepicker.components.DatePicker();
-        datePicker2 = new com.github.lgooddatepicker.components.DatePicker();
+        datePickerStart = new com.github.lgooddatepicker.components.DatePicker();
+        datePickerStop = new com.github.lgooddatepicker.components.DatePicker();
         jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        dropDown = new javax.swing.JComboBox<>();
+        btnPriceList = new javax.swing.JButton();
 
         jTextField2.setText("jTextField2");
 
@@ -51,16 +100,15 @@ public class CapturePriceUI extends javax.swing.JFrame {
         jLabel1.setText("Capture Price");
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        jLabel2.setText("Select date from which to stop implement price");
+        jLabel2.setText("Select date from which to start implementing price");
 
         jLabel3.setText("Select date from which to stop implementing price");
 
         jLabel4.setText("Input price");
 
-        jTextField3.setText("jTextField3");
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        txtInputPrice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                txtInputPriceActionPerformed(evt);
             }
         });
 
@@ -87,7 +135,20 @@ public class CapturePriceUI extends javax.swing.JFrame {
 
         jLabel5.setText("Packaging type");
 
-        jTextField4.setText("jTextField4");
+        dropDown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECT" }));
+        dropDown.setToolTipText("");
+        dropDown.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dropDownActionPerformed(evt);
+            }
+        });
+
+        btnPriceList.setText("Price List");
+        btnPriceList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPriceListActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -106,51 +167,59 @@ public class CapturePriceUI extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(datePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(datePickerStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(157, 157, 157)
-                                        .addComponent(jLabel1))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(292, 292, 292)
                                         .addComponent(btnSetPrice))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel3)
                                         .addGap(25, 25, 25)
-                                        .addComponent(datePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(datePickerStop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel5)
                                             .addComponent(jLabel4))
-                                        .addGap(55, 55, 55)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                        .addGap(54, 54, 54)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(dropDown, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(txtInputPrice))))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(157, 157, 157)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnPriceList)
+                                .addGap(15, 15, 15)))
                         .addGap(0, 5, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(btnPriceList)))
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtInputPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(datePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(datePickerStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(datePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(datePickerStop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addComponent(btnSetPrice)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -164,7 +233,78 @@ public class CapturePriceUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSetPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSetPriceActionPerformed
-        // TODO add your handling code here:
+        //checks for validity
+        //trycatch?
+        try {
+            ArrayList<Price> prices = dh.getAllPrices();
+            String sPrice = txtInputPrice.getText();
+            //double newPrice = Double.parseDouble(txtInputPrice.getText());
+            double newPrice = this.doubleNewPrice();
+
+//            if (sPrice.equalsIgnoreCase("" + Double.parseDouble(sPrice))) {
+//                newPrice = Double.parseDouble(txtInputPrice.getText());
+//                txtInputPrice.setBackground(Color.white);
+//            } else {
+//                JOptionPane.showMessageDialog(null, "enter a valid price");
+//                txtInputPrice.setBackground(Color.red);
+//            }
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String sDate = "" + datePickerStart.getDate();
+            LocalDate date = LocalDate.parse(sDate, dtf);
+//        System.out.println(datePickerStart.getDate() + "");
+            String trayType = "" + dropDown.getSelectedItem();
+            int id = 0;
+            ArrayList<TrayTypes> trayTypes = dh.getAlltrayTypes();
+            for (int i = 0; i < trayTypes.size(); i++) {
+                if (trayType.equalsIgnoreCase(trayTypes.get(i).getType())) {
+                    int pos = i;
+                    id = trayTypes.get(pos).getTrayTypeID();
+                }
+
+            }
+//            try {
+//                newPrice = (double) newPrice;
+//                // JOptionPane.showMessageDialog(null, "enter a valid price");
+//            } catch (NumberFormatException e) {
+//                JOptionPane.showMessageDialog(null, "enter a valid price");
+//                txtInputPrice.setBackground(Color.red);
+//            }
+//            if (!(newPrice == (double) newPrice)) {
+//                JOptionPane.showMessageDialog(null, "enter a valid price");
+//                txtInputPrice.setBackground(Color.red);
+//            }
+
+            if ((!(date.isAfter(LocalDate.now()) || date.isAfter(datePickerStop.getDate())))) {
+                System.out.println(Double.parseDouble(sPrice));
+                System.out.println(sPrice);
+                System.out.println(newPrice);
+                if (newPrice == Double.parseDouble(sPrice)) {
+                    newPrice = Double.parseDouble(sPrice);
+                    txtInputPrice.setBackground(Color.white);
+                    Price p = new Price(id, date, newPrice);
+                    dh.insertNewPrice(p);
+                    JOptionPane.showMessageDialog(null, "Price successfully Inputted");
+                } else {
+                    JOptionPane.showMessageDialog(null, "enter a valid price");
+                    txtInputPrice.setBackground(Color.red);
+                }
+//                try {
+//                    newPrice = Double.parseDouble(sPrice);
+//                    txtInputPrice.setBackground(Color.white);
+//                } catch (Exception e) {
+//                    JOptionPane.showMessageDialog(null, "enter a valid price");
+//                    txtInputPrice.setBackground(Color.red);
+//                }
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Please input a valid start date which isn't in the future or after the end date");
+            }
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+
+        //prices.size()+1
+
     }//GEN-LAST:event_btnSetPriceActionPerformed
 
     private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
@@ -177,9 +317,19 @@ public class CapturePriceUI extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void txtInputPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtInputPriceActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_txtInputPriceActionPerformed
+
+    private void dropDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropDownActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dropDownActionPerformed
+
+    private void btnPriceListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPriceListActionPerformed
+        PricelistUI pl = new PricelistUI();
+        pl.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnPriceListActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,9 +369,11 @@ public class CapturePriceUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnHelp;
+    private javax.swing.JButton btnPriceList;
     private javax.swing.JButton btnSetPrice;
-    private com.github.lgooddatepicker.components.DatePicker datePicker1;
-    private com.github.lgooddatepicker.components.DatePicker datePicker2;
+    private com.github.lgooddatepicker.components.DatePicker datePickerStart;
+    private com.github.lgooddatepicker.components.DatePicker datePickerStop;
+    private javax.swing.JComboBox<String> dropDown;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -229,7 +381,6 @@ public class CapturePriceUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField txtInputPrice;
     // End of variables declaration//GEN-END:variables
 }

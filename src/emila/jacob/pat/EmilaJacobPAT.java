@@ -90,6 +90,8 @@ l.setVisible(true);
 //m.setVisible(true);
 //System.out.println(dh.sales().toString());
 //System.out.println(dh.getAllInvoices());
+
+       // System.out.println(dh.priceLists().toString());
     }
 
 }

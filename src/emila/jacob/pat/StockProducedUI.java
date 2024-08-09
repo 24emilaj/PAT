@@ -23,7 +23,7 @@ public class StockProducedUI extends javax.swing.JFrame {
     public StockProducedUI() {
         initComponents();
         this.insertTable();
-        txtavgEggs.setText("" + dh.avgEggs());
+        txtavgEggs.setText("" + dh.avgEggsBasedOnLastMonth());
         txtavgEggs.setEditable(false);
 
     }
@@ -98,6 +98,11 @@ public class StockProducedUI extends javax.swing.JFrame {
         jLabel2.setText("average produced per day (based on last month)");
 
         txtavgEggs.setText("jTextField1");
+        txtavgEggs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtavgEggsActionPerformed(evt);
+            }
+        });
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -178,6 +183,10 @@ public class StockProducedUI extends javax.swing.JFrame {
         m.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void txtavgEggsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtavgEggsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtavgEggsActionPerformed
 
     /**
      * @param args the command line arguments

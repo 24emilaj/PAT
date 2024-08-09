@@ -694,6 +694,7 @@ public class DataHandler {
         return sales;
     }
 
+    //**********************Stock Produced***********************************************
     public ArrayList<StockProduced> stockProduced() {
         ArrayList<StockProduced> stockProduced = new ArrayList();
         try {
@@ -717,6 +718,22 @@ public class DataHandler {
         }
         return stockProduced;
     }
+
+    public int avgEggsBasedOnLastMonth() {
+        int avg = 0;
+        try {
+            String sql = "SELECT ROUND(avg(amount)) AS avgEggs FROM chickenfarmdb.tbleggs\n"
+                    + "WHERE month(tbleggs.date) >= month(now())-1";
+            Connect con = new Connect();
+            ResultSet rs = con.query(sql);
+            while (rs.next()) {
+                avg = rs.getInt("avgEggs");
+            }
+        } catch (SQLException e) {
+            System.err.println(e);
+        }
+        return avg;
+    }
     //*********************Stock Projection**********************************
 
     public int avgEggs() {
@@ -726,12 +743,44 @@ public class DataHandler {
             Connect con = new Connect();
             ResultSet rs = con.query(sql);
             while (rs.next()) {
-             avg = rs.getInt("avgEggs");
+                avg = rs.getInt("avgEggs");
             }
         } catch (SQLException e) {
             System.err.println(e);
         }
         return avg;
+    }
+
+    //**************************Price List***************************************
+    public ArrayList<PriceList> priceLists() {
+        ArrayList<PriceList> priceLists = new ArrayList();
+        try {
+
+            String sql = "SELECT tbltraytypes.type, price,dateUpdated FROM chickenfarmdb.tblprice, chickenfarmdb.tbltraytypes\n"
+                    + "WHERE tblprice.trayTypeID = tbltraytypes.traytypeID\n"
+                    + "ORDER BY dateUpdated;";
+            Connect con = new Connect();
+            ResultSet rs = con.query(sql);
+            while (rs.next()) {
+                String trayType = rs.getString("type");
+               // System.out.println(trayType);
+                double price = rs.getDouble("price");
+               // System.out.println(price);
+                DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                String date = "" + rs.getDate("dateUpdated");
+                
+                LocalDate dateImplemented = LocalDate.parse(date, df);
+                //System.out.println(dateImplemented);
+                PriceList l = new PriceList(trayType, price, dateImplemented);
+                priceLists.add(l);
+               // System.out.println(l.toString());
+            }
+            con.close();
+        } catch (SQLException e) {
+            System.err.println(e);
+        }
+
+        return priceLists;
     }
 
 }
