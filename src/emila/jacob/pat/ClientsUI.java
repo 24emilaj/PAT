@@ -7,6 +7,7 @@ package emila.jacob.pat;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
@@ -26,27 +27,81 @@ public class ClientsUI extends javax.swing.JFrame {
     public ClientsUI() {
         initComponents();
         this.insertTable();
+        this.refreshTable();
     }
 
     public void insertTable() {
         DataHandler dh = new DataHandler();
         DefaultTableModel dtm = (DefaultTableModel) tblClients.getModel();
+        dtm.setRowCount(0);
         //this.add(tblClients);
         tblClients.setModel(dtm);
         Object client[] = new Object[7];
-        for (int i = 0; i < clients.size(); i++) {
-            client[0] = clients.get(i).getClientname();
-            client[1] = clients.get(i).getContactname();
-            client[2] = clients.get(i).getContactNum();
-            client[3] = clients.get(i).getEmail();
-            client[4] = clients.get(i).getPaymentContact();
-            client[5] = clients.get(i).getDeliveryAddress();
-            client[6] = clients.get(i).getArea();
-            dtm.addRow(client);
+//        for (int i = 0; i < clients.size(); i++) {
+        for (Client clients : clients) {
+
+            client[0] = clients.getClientname();
+            client[1] = clients.getContactname();
+            client[2] = clients.getContactNum();
+            client[3] = clients.getEmail();
+            client[4] = clients.getPaymentContact();
+            client[5] = clients.getDeliveryAddress();
+            client[6] = clients.getArea();
+            dtm.addRow(client.clone());
 
         }
         tblClients.setRowSelectionInterval(0, 0);
-        
+
+        selected = tblClients.getSelectedRow();
+    }
+
+    public void refreshTable() {
+//          DefaultTableModel dtm = (DefaultTableModel) tblClients.getModel();
+//          dtm.setRowCount(0);
+        this.insertTable();
+//            DefaultTableModel dtm = (DefaultTableModel) tblClients.getModel();
+//            dtm.setRowCount(0);
+//            tblClients.setModel(dtm);
+//            Object client[] = new Object[7];
+//            for (int i = 0; i < clients.size(); i++) {
+//                client[0] = clients.get(i).getClientname();
+//                client[1] = clients.get(i).getContactname();
+//                client[2] = clients.get(i).getContactNum();
+//                client[3] = clients.get(i).getEmail();
+//                client[4] = clients.get(i).getPaymentContact();
+//                client[5] = clients.get(i).getDeliveryAddress();
+//                client[6] = clients.get(i).getArea();
+//                dtm.addRow(client);
+//                
+//            }
+//                        dtm.fireTableDataChanged();
+//
+//            // dtm.setRowCount(clients.size());
+//       
+//
+//        // dtm.fireTableDataChanged();
+//               selected = tblClients.getSelectedRow();
+    }
+
+    // Method to add a new client and update the table
+    //chatGPT
+    public void addClient(Client newClient) {
+        DefaultTableModel dtm = (DefaultTableModel) tblClients.getModel();
+        clients.add(newClient); // Add to the list of clients
+        Object[] rowData = {
+            newClient.getClientname(),
+            newClient.getContactname(),
+            newClient.getContactNum(),
+            newClient.getEmail(),
+            newClient.getPaymentContact(),
+            newClient.getDeliveryAddress(),
+            newClient.getArea()
+        };
+        dtm.addRow(rowData); // Add to the table model
+
+        // Optionally select the newly added row
+        int rowIndex = dtm.getRowCount() - 1;
+        tblClients.setRowSelectionInterval(rowIndex, rowIndex);
         selected = tblClients.getSelectedRow();
     }
 
@@ -72,10 +127,10 @@ public class ClientsUI extends javax.swing.JFrame {
 //            }}
 
     }
-    
-    private void valueChanged(){
-    selected = tblClients.getSelectedRow();
-        if (selected!= -1) {
+
+    private void valueChanged() {
+        selected = tblClients.getSelectedRow();
+        if (selected != -1) {
             txtclientname.setText(clients.get(selected).getClientname());
             txtcontactname.setText(clients.get(selected).getContactname());
             txtcontactnumber.setText(clients.get(selected).getContactNum());
@@ -83,7 +138,7 @@ public class ClientsUI extends javax.swing.JFrame {
             txtpaymentcontact.setText(clients.get(selected).getPaymentContact());
             txtdeliveryaddress.setText(clients.get(selected).getDeliveryAddress());
             txtarea.setText(clients.get(selected).getArea());
-            
+
         }
     }
 
@@ -320,7 +375,25 @@ public class ClientsUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // add an are you sure option such as a message dialog or something
+        //chat
+
+        int response = JOptionPane.showConfirmDialog(null, "Are you sure you would like to delete this client",
+                "Confirm Deletion", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+
+        String clientname = txtclientname.getText();
+        String contactname = txtcontactname.getText();
+        String contactNum = txtcontactnumber.getText();
+        String paymentContact = txtpaymentcontact.getText();
+        String deliveryAddress = txtdeliveryaddress.getText();
+        String area = txtarea.getText();
+        String email = txtemail.getText();
+        Client c = new Client(clientname, contactname, contactNum, paymentContact, deliveryAddress, area, email);
+        if (response == JOptionPane.YES_OPTION) {
+            dh.deleteClient(c);
+        } else {
+            JOptionPane.showMessageDialog(null, "Deletion is cancelled");
+        }
+
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -347,12 +420,32 @@ public class ClientsUI extends javax.swing.JFrame {
         String email = txtemail.getText();
         Client c = new Client(clientname, contactname, contactNum, paymentContact, deliveryAddress, area, email);
         dh.insertNewClient(c);
+        this.addClient(c);
+        JOptionPane.showMessageDialog(null, "New client added.");
+        this.refreshTable();
+        //txtclientname.setToolTipText("wer");
+        // btnInsert.setToolTipText("Click this button to insert a new client into the database.");
+        //this.valueChanged();
     }//GEN-LAST:event_btnInsertActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        DataHandler dh = new DataHandler();
+        // DataHandler dh = new DataHandler();
         //  int id = txtclientname.getText();
-        //   dh.deleteClient(id);
+        String clientname = txtclientname.getText();
+        String contactname = txtcontactname.getText();
+        String contactNumber = txtcontactnumber.getText();
+        String paymentContact = txtpaymentcontact.getText();
+        String deliveryAddress = txtdeliveryaddress.getText();
+        String area = txtarea.getText();
+        String email = txtemail.getText();
+        Client c = new Client(clientname, contactname, contactNumber, paymentContact, deliveryAddress, area, email);
+        dh.updateClient(c);
+        System.out.println(c + " cv");
+        JOptionPane.showMessageDialog(null, "Client info updated.");
+        this.valueChanged();
+        this.refreshTable();
+        //this.insertTable();
+
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void tblClientsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblClientsMouseClicked
@@ -378,16 +471,24 @@ public class ClientsUI extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ClientsUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClientsUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ClientsUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClientsUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ClientsUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClientsUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ClientsUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClientsUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>

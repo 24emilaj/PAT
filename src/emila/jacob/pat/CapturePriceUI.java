@@ -274,7 +274,7 @@ public class CapturePriceUI extends javax.swing.JFrame {
 //                txtInputPrice.setBackground(Color.red);
 //            }
 
-            if ((!(date.isAfter(LocalDate.now()) || date.isAfter(datePickerStop.getDate())))) {
+            if ((!( date.isAfter(datePickerStop.getDate())))) {
                 System.out.println(Double.parseDouble(sPrice));
                 System.out.println(sPrice);
                 System.out.println(newPrice);
