@@ -5,6 +5,7 @@
 package emila.jacob.pat;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,6 +23,8 @@ public class PricelistUI extends javax.swing.JFrame {
      */
     public PricelistUI() {
         initComponents();
+        btnUpdate.setVisible(false);
+        btnDelete.setVisible(false);
         this.insertTable();
     }
 
@@ -103,6 +106,11 @@ public class PricelistUI extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblPrices);
 
         btnHelp.setText("Help");
+        btnHelp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHelpActionPerformed(evt);
+            }
+        });
 
         btnUpdate.setText("Update");
 
@@ -161,6 +169,10 @@ public class PricelistUI extends javax.swing.JFrame {
         p.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
+        JOptionPane.showMessageDialog(null, "Click Back to return back to the capture price page");
+    }//GEN-LAST:event_btnHelpActionPerformed
 
     /**
      * @param args the command line arguments

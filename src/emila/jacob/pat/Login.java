@@ -11,6 +11,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.ToolTipManager;
 
 /**
  *
@@ -24,6 +25,19 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         this.image();
+        this.toolTips();
+    }
+
+    /**
+     * method which sets all the tooltip texts for buttons/textfields on the
+     * jframe
+     */
+    public void toolTips() {
+        ToolTipManager toolTipManager = ToolTipManager.sharedInstance();
+        toolTipManager.setInitialDelay(800);
+        btnlogin.setToolTipText("Click this button to go to the menu");
+        txtUsername.setToolTipText("enter your username here");
+        txtPassword.setToolTipText("Enter your password here");
     }
 
     public void image() {
@@ -36,7 +50,7 @@ public class Login extends javax.swing.JFrame {
         //        } catch (IOException e) {
         //            System.err.println(e);
         //        }
-        ImageIcon image = new ImageIcon("C:/Emila PAT/PAT/logo.jpg");
+        ImageIcon image = new ImageIcon("C:/Emila PAT/PAT/SVLOGO.jpg");
         lblLogo.setIcon(image);
 
     }
@@ -54,9 +68,9 @@ public class Login extends javax.swing.JFrame {
         login = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        usernameenter = new javax.swing.JTextField();
-        passwordenter = new javax.swing.JTextField();
+        txtUsername = new javax.swing.JTextField();
         btnlogin = new javax.swing.JButton();
+        txtPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,16 +81,10 @@ public class Login extends javax.swing.JFrame {
 
         jLabel3.setText("password");
 
-        usernameenter.setText("  ");
-        usernameenter.addActionListener(new java.awt.event.ActionListener() {
+        txtUsername.setText("  ");
+        txtUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameenterActionPerformed(evt);
-            }
-        });
-
-        passwordenter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordenterActionPerformed(evt);
+                txtUsernameActionPerformed(evt);
             }
         });
 
@@ -98,20 +106,19 @@ public class Login extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(64, 64, 64)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(passwordenter, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(usernameenter, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(login)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(56, 56, 56))))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addGap(64, 64, 64)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
+                    .addComponent(txtPassword))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(login)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,16 +126,16 @@ public class Login extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(login)
-                    .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(usernameenter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(passwordenter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addComponent(btnlogin)
                 .addContainerGap())
         );
@@ -136,33 +143,32 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void usernameenterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameenterActionPerformed
+    private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_usernameenterActionPerformed
+    }//GEN-LAST:event_txtUsernameActionPerformed
 
     //Icon icon = new ImageIcon(getClass().getResource("SV_Logo.jdk"));
     // JLabel lblLogo = new JLabel("An icon", image);
 
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
         MenuUI m = new MenuUI();
-//        try {
-//            if (usernameenter.getText().equalsIgnoreCase("jana")) {
-//                if (passwordenter.getText().equalsIgnoreCase("chicken")) {
-//                    m.setVisible(true);
-//                }
-//
-//            }
-//        } catch (Exception e) {
-//            System.err.println(e);
-//        }
+        try {
+            char[] passwordChars = txtPassword.getPassword();
+            String password = new String(passwordChars);
+            
+            if (txtUsername.getText().trim().equalsIgnoreCase("jana")&&password.equalsIgnoreCase("sv")) {
+                
+                    m.setVisible(true);
+                
 
-        m.setVisible(true);
-        setVisible(false);
+            }
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+
+//        m.setVisible(true);
+//        setVisible(false);
     }//GEN-LAST:event_btnloginActionPerformed
-
-    private void passwordenterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordenterActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordenterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,7 +212,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel login;
-    private javax.swing.JTextField passwordenter;
-    private javax.swing.JTextField usernameenter;
+    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

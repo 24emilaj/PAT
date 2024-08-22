@@ -27,7 +27,13 @@ public class SalesAnalysisUI extends javax.swing.JFrame {
         // DataHandler dh = new DataHandler();
         this.insertTable();
         //    this.addTable();
+        this.toolTips();
 
+    }
+    
+    public void toolTips(){
+    btnBack.setToolTipText("Click this button to return to the menu");
+    
     }
 
     public void testPrintDeleteMe() {
@@ -52,7 +58,8 @@ public class SalesAnalysisUI extends javax.swing.JFrame {
         Object sale[] = new Object[3];
         for (int i = 0; i < sales.size(); i++) {
             sale[0] = "" + sales.get(i).getClientName();
-            sale[1] = "" + sales.get(i).getTotalIncome();
+          //  sale[1] = "" + Double.parseDouble("" + Math.round((sales.get(i).getTotalIncome())*100)/100);
+          sale[1] = "" + (sales.get(i).getTotalIncome());
 //            for (int j = 0; j < invoices.size(); j++) {
 //                if (invoices.get(i).getClientID() == clients.get(i).getClientID() && sales.get(i).getClientName().equalsIgnoreCase(sales.get(i).getClientName())) {
 //                    numOrders++;
@@ -104,15 +111,19 @@ public class SalesAnalysisUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnHelp = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblSales = new javax.swing.JTable();
         btnBack = new javax.swing.JButton();
-        btnQuantity = new javax.swing.JButton();
-        btnGeneral = new javax.swing.JButton();
-        btnPayment = new javax.swing.JButton();
-        btnHelp = new javax.swing.JButton();
+
+        btnHelp.setText("Help");
+        btnHelp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHelpActionPerformed(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -145,14 +156,6 @@ public class SalesAnalysisUI extends javax.swing.JFrame {
             }
         });
 
-        btnQuantity.setText("Quantity");
-
-        btnGeneral.setText("General");
-
-        btnPayment.setText("Payment");
-
-        btnHelp.setText("Help");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -163,16 +166,9 @@ public class SalesAnalysisUI extends javax.swing.JFrame {
                         .addGap(39, 39, 39)
                         .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addComponent(btnQuantity)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnGeneral)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnPayment))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jLabel1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(239, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,9 +177,7 @@ public class SalesAnalysisUI extends javax.swing.JFrame {
                         .addContainerGap(30, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnBack)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnHelp)
-                        .addGap(19, 19, 19))))
+                        .addGap(19, 306, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,15 +188,8 @@ public class SalesAnalysisUI extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnQuantity)
-                    .addComponent(btnGeneral)
-                    .addComponent(btnPayment))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBack)
-                    .addComponent(btnHelp))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addComponent(btnBack)
                 .addContainerGap())
         );
 
@@ -214,6 +201,10 @@ public class SalesAnalysisUI extends javax.swing.JFrame {
         m.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnHelpActionPerformed
 
     /**
      * @param args the command line arguments
@@ -252,10 +243,7 @@ public class SalesAnalysisUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnGeneral;
     private javax.swing.JButton btnHelp;
-    private javax.swing.JButton btnPayment;
-    private javax.swing.JButton btnQuantity;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

@@ -4,6 +4,8 @@
  */
 package emila.jacob.pat;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author JJacob
@@ -13,13 +15,17 @@ public class InvoiceList {
 //tbltraytypes.type, quantity, paymentType,
 //tblprice.price*tblinvoice.discountPercentage/100 AS Price,
 //delivered, paid
+    private int invoiceID, clientID;
     private String clientName,contactName,contactNumber, paymentContact, deliveryAddress,type;
-    private int quantity;
+    private String quantity;
     private String paymentType;
+    private LocalDate date;
     private double price;
     private boolean delivered,paid;
 
-    public InvoiceList(String clientName, String contactName, String contactNumber, String paymentContact, String deliveryAddress, String type, int quantity, String paymentType, double price, boolean delivered, boolean paid) {
+    public InvoiceList(int invoiceID, int clientID, String clientName, String contactName, String contactNumber, String paymentContact, String deliveryAddress, String type, String quantity, String paymentType, LocalDate date, double price, boolean delivered, boolean paid) {
+        this.invoiceID = invoiceID;
+        this.clientID = clientID;
         this.clientName = clientName;
         this.contactName = contactName;
         this.contactNumber = contactNumber;
@@ -28,9 +34,18 @@ public class InvoiceList {
         this.type = type;
         this.quantity = quantity;
         this.paymentType = paymentType;
+        this.date = date;
         this.price = price;
         this.delivered = delivered;
         this.paid = paid;
+    }
+
+    public int getInvoiceID() {
+        return invoiceID;
+    }
+
+    public int getClientID() {
+        return clientID;
     }
 
     public String getClientName() {
@@ -57,12 +72,16 @@ public class InvoiceList {
         return type;
     }
 
-    public int getQuantity() {
+    public String getQuantity() {
         return quantity;
     }
 
     public String getPaymentType() {
         return paymentType;
+    }
+
+    public LocalDate getDate() {
+        return date;
     }
 
     public double getPrice() {
@@ -77,10 +96,32 @@ public class InvoiceList {
         return paid;
     }
 
+
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
-        return "InvoiceList{" + "clientName=" + clientName + ", contactName=" + contactName + ", contactNumber=" + contactNumber + ", paymentContact=" + paymentContact + ", deliveryAddress=" + deliveryAddress + ", type=" + type + ", quantity=" + quantity + ", paymentType=" + paymentType + ", price=" + price + ", delivered=" + delivered + ", paid=" + paid + '}';
+        return "InvoiceList{" + "invoiceID=" + invoiceID + ", clientID=" + clientID + ", clientName=" + clientName + ", contactName=" + contactName + ", contactNumber=" + contactNumber + ", paymentContact=" + paymentContact + ", deliveryAddress=" + deliveryAddress + ", type=" + type + ", quantity=" + quantity + ", paymentType=" + paymentType + ", date=" + date + ", price=" + price + ", delivered=" + delivered + ", paid=" + paid + '}';
     }
+    
+    
+    
+
+  
+
+
+
     
     
 }

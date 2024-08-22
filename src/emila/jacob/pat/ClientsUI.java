@@ -4,11 +4,8 @@
  */
 package emila.jacob.pat;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -27,7 +24,33 @@ public class ClientsUI extends javax.swing.JFrame {
     public ClientsUI() {
         initComponents();
         this.insertTable();
-        this.refreshTable();
+        this.toolTips();
+    }
+/**
+ * method which sets all the tooltip texts for buttons/textfields on the jframe
+ */
+    public void toolTips() {
+        btnBack.setToolTipText("Click this button to return to the menu");
+        //sets tooltp text for btnInsert
+        btnInsert.setToolTipText("Click this button to insert a new client into the database");
+        //sets tooltp text for btnUpdate
+        btnUpdate.setToolTipText("Click this button to update a client in the database");
+        //sets tooltp text for btnDelete
+        btnDelete.setToolTipText("Click this button to delete a client from the database");
+       //sets tooltp text for clientname textfield
+        txtclientname.setToolTipText("fill in the clients name here");
+        //sets tooltp text for contactname textfield
+        txtcontactname.setToolTipText("fill in the clients contactname here");
+        //sets tooltp text for contactnumber textfield
+        txtcontactnumber.setToolTipText("fill in the clients contact number here");
+        //sets tooltp text for deliveryaddress textfield
+        txtdeliveryaddress.setToolTipText("fill in the clients delivery address here");
+        //sets tooltp text for paymentcontact textfield
+        txtpaymentcontact.setToolTipText("fill in the clients payment contact here");
+        //sets tooltp text for area textfield
+        txtarea.setToolTipText("fill in the area in whuch the client is based here");
+        //sets tooltp text for email textfield
+        txtemail.setToolTipText("fill in the clients email here");
     }
 
     public void insertTable() {
@@ -141,6 +164,29 @@ public class ClientsUI extends javax.swing.JFrame {
 
         }
     }
+//      public void removeClient(int rowIndex) {
+//        clients.remove(rowIndex);
+//        fireTableRowsDeleted(rowIndex, rowIndex);
+//    }
+
+    public void removeClient(int selected) {
+        DefaultTableModel dtm = (DefaultTableModel) tblClients.getModel();
+        if (selected != -1) {
+            tblClients.remove(selected);
+
+            dtm.fireTableRowsDeleted(selected, selected);
+        }
+
+    }
+
+    public void updateClient(int rowIndex, Client updatedClient) {
+        clients.set(rowIndex, updatedClient);
+        DefaultTableModel dtm = (DefaultTableModel) tblClients.getModel();
+        // Notify the table of changes to the specific row
+        for (int i = 0; i < tblClients.getColumnCount(); i++) {
+            dtm.fireTableCellUpdated(rowIndex, i);
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -246,8 +292,6 @@ public class ClientsUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("add search function");
-
         jButton1.setText("Client Name");
 
         jButton2.setText("Contact Name");
@@ -281,7 +325,7 @@ public class ClientsUI extends javax.swing.JFrame {
                         .addComponent(btnBack)
                         .addGap(224, 224, 224)
                         .addComponent(jLabel3)))
-                .addContainerGap(922, Short.MAX_VALUE))
+                .addContainerGap(1027, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 985, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -380,7 +424,7 @@ public class ClientsUI extends javax.swing.JFrame {
         int response = JOptionPane.showConfirmDialog(null, "Are you sure you would like to delete this client",
                 "Confirm Deletion", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 
-        String clientname = txtclientname.getText();
+        String clientname = txtclientname.getText().trim();
         String contactname = txtcontactname.getText();
         String contactNum = txtcontactnumber.getText();
         String paymentContact = txtpaymentcontact.getText();
@@ -388,8 +432,12 @@ public class ClientsUI extends javax.swing.JFrame {
         String area = txtarea.getText();
         String email = txtemail.getText();
         Client c = new Client(clientname, contactname, contactNum, paymentContact, deliveryAddress, area, email);
+        //System.out.println(c.toString());
         if (response == JOptionPane.YES_OPTION) {
             dh.deleteClient(c);
+            JOptionPane.showMessageDialog(null, "Successful Deletion");
+            selected = tblClients.getSelectedRow();
+            this.removeClient(selected);
         } else {
             JOptionPane.showMessageDialog(null, "Deletion is cancelled");
         }
@@ -431,21 +479,32 @@ public class ClientsUI extends javax.swing.JFrame {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // DataHandler dh = new DataHandler();
         //  int id = txtclientname.getText();
-        String clientname = txtclientname.getText();
+        int clientID = 0;
+        
+       String clientname = txtclientname.getText();
+        for (int i = 0; i < clients.size(); i++) {
+            if (clientname.equalsIgnoreCase(clients.get(i).getClientname())) {
+                clientID = clients.get(i).getClientID();
+            }
+        }
+        
         String contactname = txtcontactname.getText();
         String contactNumber = txtcontactnumber.getText();
         String paymentContact = txtpaymentcontact.getText();
         String deliveryAddress = txtdeliveryaddress.getText();
         String area = txtarea.getText();
         String email = txtemail.getText();
-        Client c = new Client(clientname, contactname, contactNumber, paymentContact, deliveryAddress, area, email);
-        dh.updateClient(c);
+        Client c = new Client(clientID, clientname, contactname, contactNumber, paymentContact, deliveryAddress, area, email);
+        dh.updateClient(clientID,c);
         System.out.println(c + " cv");
         JOptionPane.showMessageDialog(null, "Client info updated.");
         this.valueChanged();
         this.refreshTable();
         //this.insertTable();
+        int rowIndex = selected;
 
+        //clients.set(rowIndex, c);
+        this.updateClient(rowIndex, c);
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void tblClientsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblClientsMouseClicked

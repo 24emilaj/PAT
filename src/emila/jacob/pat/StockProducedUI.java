@@ -8,6 +8,7 @@ package emila.jacob.pat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import javax.swing.ToolTipManager;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -16,7 +17,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class StockProducedUI extends javax.swing.JFrame {
 //coops and egg
+
     private ArrayList<Eggs> eggs;
+    private ArrayList<Coop> coops;
     private ArrayList<StockProduced> stockProduced;
     private int selected;
     DataHandler dh = new DataHandler();
@@ -27,11 +30,36 @@ public class StockProducedUI extends javax.swing.JFrame {
     public StockProducedUI() {
         initComponents();
         this.insertTable();
+        //  this.tblStockMouseClicked(evt);
         txtavgEggs.setText("" + dh.avgEggsBasedOnLastMonth());
         txtavgEggs.setEditable(false);
         this.insertDropDown();
-        System.out.println(dh.stockProduced().size());
-        System.out.println(dh.getAllEggs().size());
+        this.selected();
+        this.toolTips();
+
+    }
+
+    public void toolTips() {
+        ToolTipManager toolTipManager = ToolTipManager.sharedInstance();
+        toolTipManager.setInitialDelay(500);
+        //sets tooltp text for btnShowDate
+        btnShowDate.setToolTipText("Click this button after you have selected the date for which you would like to see the Stock");
+        //sets tooltp text for btnInsert
+        btnInsert.setToolTipText("Click this button to insert new stock into the database");
+        //sets tooltp text for btnUpdate
+        btnUpdate.setToolTipText("Click this button to update stock in the database");
+        //sets tooltp text for btnDelete
+        btnDelete.setToolTipText("Click this button to delete stock in the database");
+        //sets tooltp text for btnClear
+        btnClear.setToolTipText("Click this button to view the original Stock Produced table");
+        //sets tooltp text for btnBack
+        btnBack.setToolTipText("Click this button to return to the menu");
+        //sets tooltp text for datePicker
+        datePickerDate.setToolTipText("Click the 3 dots to selet a date");
+        //sets tooltp text for NumEggs textfiled
+        txtNumEggs.setToolTipText("Enter the number of eggs attained here");
+        //sets tooltp text for dropDown menu
+        dropDown.setToolTipText("Select a coop");
 
     }
 
@@ -46,7 +74,8 @@ public class StockProducedUI extends javax.swing.JFrame {
      * new row into the tblStock table
      */
     public void insertTable() {
-
+        btnDelete.setVisible(false);
+        btnUpdate.setVisible(false);
         stockProduced = dh.stockProduced();
         DefaultTableModel dtm = (DefaultTableModel) tblStock.getModel();
         dtm.setRowCount(0);
@@ -59,6 +88,7 @@ public class StockProducedUI extends javax.swing.JFrame {
             stock[2] = stockProduced.get(i).getDate();
             dtm.addRow(stock);
         }
+        tblStock.setRowSelectionInterval(0, 0);
     }
 
     public void entriesForDate() {
@@ -84,24 +114,48 @@ public class StockProducedUI extends javax.swing.JFrame {
         if (!(selectedRow == -1)) {
             for (int i = 0; i < tblStock.getColumnCount(); i++) {
                 data += "" + tblStock.getValueAt(selectedRow, i);
+                System.out.println(data);
             }
-            txtCoopName.setText(data.trim());
+            // dropDown.sho;
+            // txtNumEggs.setText(data.trim());
+
         }
     }
-    
-    
+
+    private void valueChanged() {
+        selected = tblStock.getSelectedRow();
+        coops = dh.getAllCoops();
+        if (selected != -1) {
+            //   for (int i = 0; i < coops.size(); i++) {
+            String coopName = stockProduced.get(selected).getCoopName();
+            int pos = coops.indexOf(coopName); //+1;
+            //  }
+            for (int i = 0; i < coops.size(); i++) {
+                if (coopName.equalsIgnoreCase(dropDown.getItemAt(i))) {
+                    dropDown.setSelectedIndex(i);
+                }
+            }
+
+            txtNumEggs.setText("" + stockProduced.get(selected).getAmount());
+            LocalDate date = stockProduced.get(selected).getDate();
+            datePickerDate.setDate(date);
+        }
+
+    }
+
     public void insertDropDown() {
         String out = "";
         ArrayList<StockProduced> stockProduced = dh.stockProduced();
-        for (int i = 0; i < stockProduced.size(); i++) {
-            out = stockProduced.get(i).getCoopName();
+        ArrayList<Coop> coops = dh.getAllCoops();
+        for (int i = 0; i < coops.size(); i++) {
+            out = coops.get(i).getCoopName();
             // dropDown.add(out);
             dropDown.addItem(out);
         }
 
     }
-    
-        public void addStock(StockProduced newStock) {
+
+    public void addStock(StockProduced newStock) {
         DefaultTableModel dtm = (DefaultTableModel) tblStock.getModel();
         stockProduced.add(newStock); // Add to the list of clients
         Object[] rowData = {
@@ -130,13 +184,13 @@ public class StockProducedUI extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
         txtCoopName = new javax.swing.JTextField();
+        btnHelp = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblStock = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         txtavgEggs = new javax.swing.JTextField();
         btnBack = new javax.swing.JButton();
-        btnHelp = new javax.swing.JButton();
         btnInsert = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
@@ -153,6 +207,8 @@ public class StockProducedUI extends javax.swing.JFrame {
         jLabel3.setText("View:");
 
         jScrollPane2.setViewportView(jTextPane1);
+
+        btnHelp.setText("Help");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -174,6 +230,11 @@ public class StockProducedUI extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        tblStock.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblStockMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblStock);
 
         jLabel2.setText("average produced per day (based on last month)");
@@ -191,8 +252,6 @@ public class StockProducedUI extends javax.swing.JFrame {
                 btnBackActionPerformed(evt);
             }
         });
-
-        btnHelp.setText("Help");
 
         btnInsert.setText("Insert");
         btnInsert.addActionListener(new java.awt.event.ActionListener() {
@@ -259,25 +318,22 @@ public class StockProducedUI extends javax.swing.JFrame {
                                             .addComponent(jLabel4)
                                             .addComponent(jLabel5)
                                             .addComponent(jLabel6))))
-                                .addGap(0, 6, Short.MAX_VALUE))
+                                .addGap(0, 28, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnBack)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnDelete)
-                                .addGap(21, 21, 21)))
+                                .addComponent(btnDelete)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(0, 0, 0)
+                                    .addComponent(datePickerDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnInsert, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(btnUpdate)
+                                    .addGap(21, 21, 21)))
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(btnUpdate)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(btnHelp))
-                                        .addComponent(datePickerDate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(btnInsert, javax.swing.GroupLayout.Alignment.TRAILING)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(40, 40, 40)
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtNumEggs, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(dropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -334,7 +390,6 @@ public class StockProducedUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBack)
-                    .addComponent(btnHelp)
                     .addComponent(btnDelete)
                     .addComponent(btnUpdate))
                 .addContainerGap())
@@ -366,25 +421,32 @@ public class StockProducedUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
-
-        String coopName = "" + dropDown.getSelectedItem();
-        int id = 0;
-        eggs = dh.getAllEggs();
-       // System.out.println(stockProduced.size());
-        for (int i = 0; i < eggs.size(); i++) {
-            if (coopName.equalsIgnoreCase(stockProduced.get(i).getCoopName())) {
-                //int pos = i;
-                 id = eggs.get(i).getCoopID();
+        try {
+            ArrayList<Coop> coops = dh.getAllCoops();
+            String coopName = "" + dropDown.getSelectedItem();
+            int id = 0;
+            eggs = dh.getAllEggs();
+            // System.out.println(stockProduced.size());
+            for (int i = 0; i < coops.size(); i++) {
+                if (coopName.equalsIgnoreCase(coops.get(i).getCoopName())) {
+                    //int pos = i;
+                    id = coops.get(i).getCoopID();
+                    System.out.println(id);
+                }
             }
+            int numEggs = Integer.parseInt(txtNumEggs.getText());
+            DateTimeFormatter dtm = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String sDate = "" + datePickerDate.getDate();
+            LocalDate date = LocalDate.parse(sDate, dtm);
+            
+            Eggs e = new Eggs(id, date, numEggs);
+            StockProduced s = new StockProduced(coopName, numEggs, date);
+            this.addStock(s);
+            dh.insertEggs(e);
+        } catch (Exception e) {
+            System.err.println(e);
         }
-        int numEggs = Integer.parseInt(txtNumEggs.getText());
-        DateTimeFormatter dtm = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String sDate = "" + datePickerDate.getDate();
-        LocalDate date = LocalDate.parse(sDate, dtm);
-        Eggs e = new Eggs(id,date,numEggs);
-        StockProduced s = new StockProduced(coopName,numEggs,date);
-        this.addStock(s);
-        dh.insertEggs(e);
+
     }//GEN-LAST:event_btnInsertActionPerformed
 
     private void txtNumEggsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumEggsActionPerformed
@@ -392,8 +454,13 @@ public class StockProducedUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNumEggsActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-      
+
     }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void tblStockMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblStockMouseClicked
+        selected = tblStock.getSelectedRow();
+        this.valueChanged();
+    }//GEN-LAST:event_tblStockMouseClicked
 
     /**
      * @param args the command line arguments

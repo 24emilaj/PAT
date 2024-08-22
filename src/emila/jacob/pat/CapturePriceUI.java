@@ -27,13 +27,25 @@ public class CapturePriceUI extends javax.swing.JFrame {
         initComponents();
         this.insertDropDown();
         // ad a view pricelist option and then be able to delete or update prices based on dates
+        this.toolTips();
+    }
+/**
+ * method which sets all the tooltip texts for buttons/textfields on the jframe
+ */
+    public void toolTips() {
+        //sets tooltp text for the set price button
+        btnSetPrice.setToolTipText("Click this button to insert the new price into the database");
+        //sets tooltp text for the price list button
+        btnPriceList.setToolTipText("Click this button to view the list of all prices");
+        //sets tooltp text for the back button
+        btnBack.setToolTipText("Click this button to return to the menu");
+        //sets tooltp text for the drop down menu
+        dropDown.setToolTipText("select a packaging type");
+        //sets tooltp text for the input price textfield
+        txtInputPrice.setToolTipText("enter the new price here");
+        
 
     }
-//
-//    public void getNewPrice() {
-//
-//
-//    }
 
     public void insertDropDown() {
         String out = "";
@@ -48,7 +60,7 @@ public class CapturePriceUI extends javax.swing.JFrame {
 
     public double doubleNewPrice() {
         String sPrice = txtInputPrice.getText();
-        double newPrice=0;
+        double newPrice = 0;
         boolean dbl;
         try {
             newPrice = Double.parseDouble(sPrice);
@@ -61,7 +73,7 @@ public class CapturePriceUI extends javax.swing.JFrame {
             newPrice = Double.parseDouble(sPrice);
         } else {
             JOptionPane.showMessageDialog(null, "enter a valid price");
-               txtInputPrice.setBackground(Color.red);
+            txtInputPrice.setBackground(Color.red);
         }
         return newPrice;
     }
@@ -83,7 +95,6 @@ public class CapturePriceUI extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtInputPrice = new javax.swing.JTextField();
         btnSetPrice = new javax.swing.JButton();
-        btnHelp = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         datePickerStart = new com.github.lgooddatepicker.components.DatePicker();
         datePickerStop = new com.github.lgooddatepicker.components.DatePicker();
@@ -116,13 +127,6 @@ public class CapturePriceUI extends javax.swing.JFrame {
         btnSetPrice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSetPriceActionPerformed(evt);
-            }
-        });
-
-        btnHelp.setText("Help");
-        btnHelp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHelpActionPerformed(evt);
             }
         });
 
@@ -159,9 +163,7 @@ public class CapturePriceUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnBack)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnHelp)
-                        .addContainerGap())
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -223,9 +225,7 @@ public class CapturePriceUI extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addComponent(btnSetPrice)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnHelp)
-                    .addComponent(btnBack))
+                .addComponent(btnBack)
                 .addContainerGap())
         );
 
@@ -274,10 +274,10 @@ public class CapturePriceUI extends javax.swing.JFrame {
 //                txtInputPrice.setBackground(Color.red);
 //            }
 
-            if ((!( date.isAfter(datePickerStop.getDate())))) {
-                System.out.println(Double.parseDouble(sPrice));
-                System.out.println(sPrice);
-                System.out.println(newPrice);
+            if ((!(date.isAfter(datePickerStop.getDate()))) && !("" + dropDown.getSelectedItem()).equalsIgnoreCase("select")) {
+//                System.out.println(Double.parseDouble(sPrice));
+//                System.out.println(sPrice);
+//                System.out.println(newPrice);
                 if (newPrice == Double.parseDouble(sPrice)) {
                     newPrice = Double.parseDouble(sPrice);
                     txtInputPrice.setBackground(Color.white);
@@ -297,7 +297,11 @@ public class CapturePriceUI extends javax.swing.JFrame {
 //                }
 
             } else {
-                JOptionPane.showMessageDialog(null, "Please input a valid start date which isn't in the future or after the end date");
+                if (("" + dropDown.getSelectedItem()).equalsIgnoreCase("select")) {
+                    JOptionPane.showMessageDialog(null, "please select a packaging type");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Please input a valid start date which isn't after the end date");
+                }
             }
         } catch (Exception e) {
             System.err.println(e);
@@ -306,10 +310,6 @@ public class CapturePriceUI extends javax.swing.JFrame {
         //prices.size()+1
 
     }//GEN-LAST:event_btnSetPriceActionPerformed
-
-    private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnHelpActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         MenuUI m = new MenuUI();
@@ -368,7 +368,6 @@ public class CapturePriceUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnHelp;
     private javax.swing.JButton btnPriceList;
     private javax.swing.JButton btnSetPrice;
     private com.github.lgooddatepicker.components.DatePicker datePickerStart;

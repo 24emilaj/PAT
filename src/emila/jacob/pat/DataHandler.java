@@ -78,8 +78,8 @@ public class DataHandler {
     public int deleteClient(Client c) {
         int numRows = 0;
         try {
-            //DELETE FROM tblClients WHERE clientID =6
-            String sql = "DELETE FROM tblClients WHERE clientID = " + c.getClientID() + ";";
+            //DELETE FROM chickenfarmdb.tblclients WHERE clientname = "wer"  
+            String sql = "DELETE FROM tblClients WHERE clientname = \"" + c.getClientname() + "\";";
             Connect con = new Connect();
             con.makeChange(sql);
         } catch (SQLException e) {
@@ -94,15 +94,13 @@ public class DataHandler {
      * @param c - the client to be updated
      * @return number of rows changed
      */
-    public int updateClient(Client c) {
+    public int updateClient(int clientID, Client c) {
         int numRows = 0;
         try {
-            //UPDATE chickenfarmdb.tblclients SET clientName = "Greg Jacobs"
-            // WHERE clientName = "Greg Jacob"
-            //UPDATE tblClients SET clientName = "George", contactName = "G", contactNum = "123456", deliveryAddress = "there" , Area = "NAM", Email = "life@food.com" WHERE clientID = 7
+            //UPDATE chickenfarmdb.tblclients SET clientName = "Greg Jacob" WHERE clientName = "Greg Jacobs"
             String sql = "UPDATE tblClients SET clientName = \"" + c.getClientname() + "\", contactName = \"" + c.getContactNum()
                     + "\", contactNumber = \"" + c.getContactNum() + "\", paymentContact = \"" + c.getPaymentContact() + "\", deliveryAddress = \"" + c.getDeliveryAddress() + "\", Area = \""
-                    + c.getArea() + "\", Email = \"" + c.getEmail() + "\" WHERE clientName = \"" + c.getClientname() + "\";";
+                    + c.getArea() + "\", Email = \"" + c.getEmail() + "\" WHERE clientID = " + c.getClientID() + ";";
             Connect con = new Connect();
             con.makeChange(sql);
         } catch (SQLException e) {
@@ -671,7 +669,7 @@ public class DataHandler {
 // WHERE tblinvoice.clientID = tblclients.clientID
 // AND tblprice.dateUpdated = tblinvoice.date
             //String sql = "SELECT tblclients.clientName, tblprice.price, tblinvoice.quantity, tblinvoice.discountPercentage, tblinvoice.invoiceid FROM chickenfarmdb.tblinvoice, chickenfarmdb.tblclients, chickenfarmdb.tblprice WHERE tblinvoice.clientID = tblclients.clientID AND month(tblprice.dateUpdated) = month(tblinvoice.date) AND year(tblprice.dateUpdated) = year(tblinvoice.date)";
-            String sql = "SELECT tblclients.clientName, SUM(tblprice.price*tblinvoice.quantity - tblprice.price*tblinvoice.quantity*tblinvoice.discountPercentage/100) AS totalIncome,\n"
+            String sql = "SELECT tblclients.clientName, ROUND(SUM(tblprice.price*tblinvoice.quantity - tblprice.price*tblinvoice.quantity*tblinvoice.discountPercentage/100),2) AS totalIncome,\n"
                     + "COUNT(*) AS numOrders\n"
                     + "FROM chickenfarmdb.tblinvoice, chickenfarmdb.tblclients, chickenfarmdb.tblprice\n"
                     + "WHERE tblinvoice.clientID = tblclients.clientID AND month(tblprice.dateUpdated) = month(tblinvoice.date) AND year(tblprice.dateUpdated) = year(tblinvoice.date)\n"
@@ -813,34 +811,102 @@ public class DataHandler {
     }
 
     //*******************************Invoice*******************************************
-    public ArrayList<InvoiceList> inLists() {
+//    public ArrayList<InvoiceList> inLists() {
+//        ArrayList<InvoiceList> inLists = new ArrayList();
+//        try {
+//            String sql = "SELECT clientID, clientName,contactName,contactNumber, paymentContact, deliveryAddress,\n"
+//                    + "tbltraytypes.type, quantity, paymentType,\n"
+//                    + "tblprice.price*tblinvoice.discountPercentage/100 AS Price,\n"
+//                    + "delivered, paid\n"
+//                    + "FROM chickenfarmdb.tblclients, chickenfarmdb.tblorders, chickenfarmdb.tblinvoice, chickenfarmdb.tbltraytypes, chickenfarmdb.tblprice\n"
+//                    + "WHERE tblinvoice.clientID = tblclients.clientID\n"
+//                    + "AND tblinvoice.invoiceID = tblorders.invoiceID\n"
+//                    + "AND tbltraytypes.traytypeID = tblinvoice.trayTypeID\n"
+//                    + "AND tblprice.trayTypeID = tblinvoice.trayTypeID;";
+//            Connect con = new Connect();
+//            ResultSet rs = con.query(sql);
+//            while (rs.next()) {
+//                int clientID = rs.getInt("clientID");
+//                String clientName = rs.getString("clientname");
+//                String contactName = rs.getString("contactName");
+//                String contactNumber = rs.getString("contactNumber");
+//                String paymentContact = rs.getString("paymentContact");
+//                String deliveryAddress = rs.getString("deliveryAddress");
+//                String type = rs.getString("type");
+//                int quantity = rs.getInt("quantity");
+//                String paymentType = rs.getString("paymentType");
+//                double price = rs.getDouble("Price");
+//                boolean delivered = rs.getBoolean("delivered");
+//                boolean paid = rs.getBoolean("paid");
+//                InvoiceList i = new InvoiceList(clientName, contactName, contactNumber, paymentContact, deliveryAddress,
+//                        type, quantity, paymentType,
+//                        price, delivered, paid);
+//                inLists.add(i);
+//            }
+//            con.close();
+//        } catch (SQLException e) {
+//            System.err.println(e);
+//        }
+//        return inLists;
+//    }
+    public ArrayList<InvoiceList> inList() {
         ArrayList<InvoiceList> inLists = new ArrayList();
         try {
-            String sql = "SELECT clientName,contactName,contactNumber, paymentContact, deliveryAddress,\n"
-                    + "tbltraytypes.type, quantity, paymentType,\n"
-                    + "tblprice.price*tblinvoice.discountPercentage/100 AS Price,\n"
-                    + "delivered, paid\n"
-                    + "FROM chickenfarmdb.tblclients, chickenfarmdb.tblorders, chickenfarmdb.tblinvoice, chickenfarmdb.tbltraytypes, chickenfarmdb.tblprice\n"
-                    + "WHERE tblinvoice.clientID = tblclients.clientID\n"
-                    + "AND tblinvoice.invoiceID = tblorders.invoiceID\n"
-                    + "AND tbltraytypes.traytypeID = tblinvoice.trayTypeID\n"
-                    + "AND tblprice.trayTypeID = tblinvoice.trayTypeID;";
+            String sql = "SELECT tblinvoice.invoiceID, tblclients.clientID, tblclients.clientName, tblclients.contactName, tblclients.contactNumber,  tblclients.paymentContact, tblclients.deliveryAddress,\n"
+                    + "    tbltraytypes.type, \n"
+                    + "    tblinvoice.quantity, tblinvoice.paymentType, tblinvoice.date,\n"
+                    + "    SUM(ROUND((tblprice.price * (1 - tblinvoice.discountPercentage / 100)), 2)) AS Price,\n"
+                    + "    tblorders.delivered, \n"
+                    + "    tblorders.paid\n"
+                    + "FROM \n"
+                    + "    chickenfarmdb.tblinvoice \n"
+                    + "     \n"
+                    + "JOIN \n"
+                    + "    chickenfarmdb.tblclients ON tblinvoice.clientID = tblclients.clientID\n"
+                    + "JOIN \n"
+                    + "    chickenfarmdb.tbltraytypes ON tblinvoice.trayTypeID = tbltraytypes.traytypeID\n"
+                    + "JOIN \n"
+                    + "    chickenfarmdb.tblprice ON tbltraytypes.traytypeID = tblprice.trayTypeID\n"
+                    + "JOIN\n"
+                    + "    chickenfarmdb.tblorders ON tblinvoice.invoiceID = tblorders.invoiceID\n"
+                    + "    where MONTH(tblprice.dateUpdated) <= MONTH(tblinvoice.date)+1\n"
+                    + "GROUP BY \n"
+                    + "	tblinvoice.invoiceID,\n"
+                    + "    tblclients.clientID, \n"
+                    + "    tblclients.clientName,\n"
+                    + "    tblclients.contactName,\n"
+                    + "    tblclients.contactNumber, \n"
+                    + "    tblclients.paymentContact, \n"
+                    + "    tblclients.deliveryAddress,\n"
+                    + "    tbltraytypes.type, \n"
+                    + "   -- tblinvoice.invoiceID,\n"
+                    + "    tblinvoice.quantity, \n"
+                    + "    tblinvoice.paymentType,\n"
+                    + "    tblinvoice.date,\n"
+                    + "  --  tblinvoice.trackingID,\n"
+                    + "    tblorders.delivered, \n"
+                    + "    tblorders.paid;";
             Connect con = new Connect();
             ResultSet rs = con.query(sql);
             while (rs.next()) {
+                int invoiceID = rs.getInt("invoiceID");
+                int clientID = rs.getInt("clientID");
                 String clientName = rs.getString("clientname");
                 String contactName = rs.getString("contactName");
                 String contactNumber = rs.getString("contactNumber");
                 String paymentContact = rs.getString("paymentContact");
                 String deliveryAddress = rs.getString("deliveryAddress");
                 String type = rs.getString("type");
-                int quantity = rs.getInt("quantity");
+                String quantity = "" + rs.getInt("quantity");
                 String paymentType = rs.getString("paymentType");
+                DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                String sdate = "" + rs.getDate("date");
+                LocalDate date = LocalDate.parse(sdate, df);
                 double price = rs.getDouble("Price");
                 boolean delivered = rs.getBoolean("delivered");
                 boolean paid = rs.getBoolean("paid");
-                InvoiceList i = new InvoiceList(clientName, contactName, contactNumber, paymentContact, deliveryAddress,
-                        type, quantity, paymentType,
+                InvoiceList i = new InvoiceList(invoiceID, clientID, clientName, contactName, contactNumber, paymentContact, deliveryAddress,
+                        type, quantity, paymentType, date,
                         price, delivered, paid);
                 inLists.add(i);
             }
@@ -849,6 +915,40 @@ public class DataHandler {
             System.err.println(e);
         }
         return inLists;
+    }
+
+    public ArrayList<pricesForInvoice> pricesForInvoice() {
+        ArrayList<pricesForInvoice> prices = new ArrayList();
+        try {
+            String sql = "SELECT DISTINCT tbltraytypes.traytypeID, tbltraytypes.type,\n"
+                    + "    tblprice.price, tblprice.dateUpdated,\n"
+                    + "    tblinvoice.invoiceID, tblinvoice.discountPercentage, tblinvoice.quantity\n"
+                    + "FROM chickenfarmdb.tbltraytypes\n"
+                    + "JOIN\n"
+                    + "    chickenfarmdb.tblprice ON tbltraytypes.traytypeID = tblprice.traytypeID\n"
+                    + " JOIN\n"
+                    + " chickenfarmdb.tblinvoice ON tbltraytypes.trayTypeID = tblinvoice.trayTypeID\n"
+                    + "\n"
+                    + "WHERE MONTH(tblprice.dateUpdated) >= MONTH(CURDATE()) + 1;";
+            Connect con = new Connect();
+            ResultSet rs = con.query(sql);
+            while (rs.next()) {
+                int invoiceID = rs.getInt("invoiceID");
+                int trayTypeID = rs.getInt("trayTypeID");
+                String type = rs.getString("type");
+                double price = rs.getDouble("price");
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                String sDate = "" + rs.getDate("dateUpdated");
+                LocalDate date = LocalDate.parse(sDate, dtf);
+                int discountPercentage = rs.getInt("discountPercentage");
+                int quantity = rs.getInt("quantity");
+                pricesForInvoice p = new pricesForInvoice(invoiceID, trayTypeID, type, price, date, discountPercentage, quantity);
+                prices.add(p);
+            }
+        } catch (SQLException e) {
+            System.err.println(e);
+        }
+        return prices;
     }
 
 }

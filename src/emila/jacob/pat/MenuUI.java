@@ -18,10 +18,31 @@ public class MenuUI extends javax.swing.JFrame {
      */
     public MenuUI() {
         initComponents();
-        ImageIcon image = new ImageIcon("C:/Emila PAT/PAT/logo.jpg");
+        ImageIcon image = new ImageIcon("C:/Emila PAT/PAT/SVLOGO.jpg");
         lblLogo.setIcon(image);
+        this.toolTips();
     }
-
+/**
+ * method which sets all the tooltip texts for buttons/textfields on the jframe
+ */
+    public void toolTips(){
+        //sets tooltp text for the log out button
+    btnLogOut.setToolTipText("Click this button to exit the program");
+    //sets tooltp text for the invoices button
+    btnInvoices.setToolTipText("Click this button to see a list of all the invoices");
+    //sets tooltp text for the stock ptodduced button
+    btnStockProduced.setToolTipText("Click this button to view/edit previous stock or to go insert new stock");
+    //sets tooltp text for the capture price button
+    btnCapturePrice.setToolTipText("Click this button to go to the page where you can insert a new price");
+    //sets tooltp text for the sales analysis button
+    btnSalesAnalysis.setToolTipText("Click this button to view the sales analysis");
+    //sets tooltp text for the capture order button
+    btnCaptureOrder.setToolTipText("Click this button to go to the page where you can log a new order");
+    //sets tooltp text for the clients button
+    btnClients.setToolTipText("Click this button to view/edit/add to the list of clients");
+    //sets tooltp text for the stock projections button
+    btnStockProjections.setToolTipText("Click this button to view the stock projections page");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,14 +53,12 @@ public class MenuUI extends javax.swing.JFrame {
     private void initComponents() {
 
         lblMenu = new javax.swing.JLabel();
-        btnMasterTable = new javax.swing.JButton();
         btnCaptureOrder = new javax.swing.JButton();
         btnSalesAnalysis = new javax.swing.JButton();
         btnStockProduced = new javax.swing.JButton();
         btnStockProjections = new javax.swing.JButton();
         btnCapturePrice = new javax.swing.JButton();
         btnLogOut = new javax.swing.JButton();
-        btnHelp = new javax.swing.JButton();
         lblLogo = new javax.swing.JLabel();
         btnClients = new javax.swing.JButton();
         btnInvoices = new javax.swing.JButton();
@@ -49,14 +68,7 @@ public class MenuUI extends javax.swing.JFrame {
         lblMenu.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         lblMenu.setText("Menu");
 
-        btnMasterTable.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        btnMasterTable.setText("Master Table");
-        btnMasterTable.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMasterTableActionPerformed(evt);
-            }
-        });
-
+        btnCaptureOrder.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btnCaptureOrder.setText("Capture Order");
         btnCaptureOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,8 +115,6 @@ public class MenuUI extends javax.swing.JFrame {
             }
         });
 
-        btnHelp.setText("Help");
-
         btnClients.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btnClients.setText("Clients");
         btnClients.addActionListener(new java.awt.event.ActionListener() {
@@ -113,6 +123,7 @@ public class MenuUI extends javax.swing.JFrame {
             }
         });
 
+        btnInvoices.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btnInvoices.setText("Invoices");
         btnInvoices.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,22 +136,22 @@ public class MenuUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnMasterTable, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(155, 155, 155)
+                .addGap(378, 378, 378)
                 .addComponent(lblMenu)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(161, 161, 161)
-                                .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnCaptureOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(352, 352, 352))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addComponent(btnInvoices, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(103, 103, 103)
+                                .addComponent(btnInvoices, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(btnStockProjections, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
@@ -152,57 +163,48 @@ public class MenuUI extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnLogOut)
-                        .addGap(116, 116, 116)
-                        .addComponent(btnCaptureOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnHelp)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(27, 27, 27))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblMenu)
+                .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblMenu))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnLogOut))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnStockProduced, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnStockProjections, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(btnCapturePrice, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(12, 12, 12)
+                                        .addComponent(btnSalesAnalysis, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(22, 22, 22)
+                                        .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(26, 26, 26)
+                                .addComponent(btnClients, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 97, Short.MAX_VALUE)))
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(btnMasterTable, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(btnStockProduced, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnStockProjections, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnCapturePrice, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(btnSalesAnalysis, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(btnClients, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(btnInvoices, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                        .addComponent(btnInvoices, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnCaptureOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnLogOut)
-                            .addComponent(btnHelp))
-                        .addContainerGap())))
+                        .addGap(92, 92, 92))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-//aalows viewer to view mastertable
-    private void btnMasterTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasterTableActionPerformed
-        MasterTable mt = new MasterTable();
-        mt.setVisible(true);
-        setVisible(false);
-    }//GEN-LAST:event_btnMasterTableActionPerformed
+
 // allows user to view stockproducedui
     private void btnStockProducedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStockProducedActionPerformed
         StockProducedUI sp = new StockProducedUI();
@@ -292,10 +294,8 @@ public class MenuUI extends javax.swing.JFrame {
     private javax.swing.JButton btnCaptureOrder;
     private javax.swing.JButton btnCapturePrice;
     private javax.swing.JButton btnClients;
-    private javax.swing.JButton btnHelp;
     private javax.swing.JButton btnInvoices;
     private javax.swing.JButton btnLogOut;
-    private javax.swing.JButton btnMasterTable;
     private javax.swing.JButton btnSalesAnalysis;
     private javax.swing.JButton btnStockProduced;
     private javax.swing.JButton btnStockProjections;
